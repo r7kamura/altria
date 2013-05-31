@@ -1,21 +1,27 @@
 class JobsController < ApplicationController
   def index
-    respond_with Job.scoped
+    respond_with scope
   end
 
   def show
-    respond_with Job.find(params[:id])
+    respond_with scope.find(params[:id])
   end
 
   def create
-    respond_with Job.create(params[:job])
+    respond_with scope.create(params[:job])
   end
 
   def update
-    respond_with Job.find(params[:id]).update(params[:job])
+    respond_with scope.find(params[:id]).update(params[:job])
   end
 
   def destroy
-    respond_with Job.find(params[:id]).destroy
+    respond_with scope.find(params[:id]).destroy
+  end
+
+  private
+
+  def scope
+    Job.scoped
   end
 end
