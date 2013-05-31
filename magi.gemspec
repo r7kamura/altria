@@ -1,16 +1,15 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'magi/version'
+require "magi/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "magi"
   spec.version       = Magi::VERSION
   spec.authors       = ["Ryo Nakamura"]
   spec.email         = ["r7kamura@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = "I am Magi."
+  spec.summary       = "Magi"
+  spec.homepage      = "https://github.com/r7kamura/magi"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
