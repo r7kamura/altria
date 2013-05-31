@@ -8,4 +8,9 @@ class Job < ActiveRecord::Base
   serialize :config, Hash
 
   validates :name, presence: true
+
+  # Runs its script and returns the status as a Boolean.
+  def run
+    system(script)
+  end
 end

@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "sidekiq"
+
 group :development, :test do
   gem "pry-rails"
 end

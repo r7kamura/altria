@@ -1,24 +1,26 @@
 class BuildsController < ApplicationController
   before_filter :require_job
+  before_filter :require_resource_params, only: :update
 
   def index
     respond_with scope
   end
 
   def show
-    respond_with scope.find(params[:id])
+    respond_with resource
   end
 
   def create
-    respond_with scope.create(params[:build])
+    resource = scope.create_with_queue
+    respond_with resource, location: [@job, resource]
   end
 
   def update
-    respond_with scope.find(params[:id]).update(params[:build])
+    respond_with resource.update_attributes(resource_params.slice(:status))
   end
 
   def destroy
-    respond_with scope.find(params[:id]).destroy
+    respond_with resource.destroy
   end
 
   private
