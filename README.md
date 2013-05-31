@@ -1,30 +1,30 @@
 # Magi
-Yet another an open source continuous integration server.
+A continuous integration server implementation.
 
-## Easy mode
-Simply invokes built-in commands.
+## Ingredients
+* Ruby
+* Rails
+* Redis
+* MySQL
 
-```
-$ gem install magi
-$ magi setup
-$ magi worker
-$ magi web
-```
-
-## Hard mode
-Magi is just a rails application. Feel free to do what you want.
+## Usage
+Magi is just a rails application.
+Feel free to do what you want.
 
 ```
 $ git clone git@github.com:r7kamura/magi.git
 $ cd magi
+$ brew install redis
+$ redis-server
 $ bundle install
 $ bundle exec sidekiq
-$ ./bin/magi web
+$ bundle exec rake db:create db:migrate
+$ rails s
 ```
 
 ## ToDo
-* magi setup command
-* magi start command
-* worker process
-* web interface application/json
-* web interface text/html
+* scheduling system
+* worker process management
+* html interface
+* json interface
+* magi command

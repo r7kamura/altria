@@ -8,6 +8,8 @@ end
 
 group :test do
   gem "rspec-rails"
+  gem "rspec-json_matcher"
+  gem "response_code_matchers"
 end
 
 group :assets do
