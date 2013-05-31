@@ -15,9 +15,8 @@ Feel free to do what you want.
 $ git clone git@github.com:r7kamura/magi.git
 $ cd magi
 $ brew install redis
-$ redis-server
+$ redis-server (in background)
 $ bundle install
-$ bundle exec sidekiq
 $ bundle exec rake db:create db:migrate
 $ rails s
 ```
@@ -28,3 +27,12 @@ $ rails s
 * html interface
 * json interface
 * magi command
+
+## Testing
+```
+$ git clone git@github.com:r7kamura/magi.git
+$ cd magi
+$ bundle install
+$ RAILS_ENV=test bundle exec rake db:create db:migrate
+$ bundle exec rspec
+```
