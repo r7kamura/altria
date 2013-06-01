@@ -21,13 +21,6 @@ $ bundle exec rake db:create db:migrate
 $ rails s
 ```
 
-## ToDo
-* scheduling system
-* worker process management
-* html interface
-* json interface
-* magi command
-
 ## Testing
 ```
 $ git clone git@github.com:r7kamura/magi.git
@@ -36,3 +29,14 @@ $ bundle install
 $ RAILS_ENV=test bundle exec rake db:create db:migrate
 $ bundle exec rspec
 ```
+
+## ToDo
+* scheduling system
+* worker process management
+* html interface
+* json interface
+* magi command
+* extensible plugin system
+
+## Architecture
+* Almost all records in magi system are stored as a file (e.g. job config, system config, and build logs)

@@ -15,6 +15,21 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 
+  # Enables :focus metadata filter.
+  config.filter_run :focus
+  config.run_all_when_everything_filtered = true
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+
   config.include RSpec::JsonMatcher, type: :request
   config.include ResponseCodeMatchers, type: :request
+
+  config.before do
+    Job.stub(directory: Rails.root + "spec/fixtures/jobs")
+  end
+
+  config.after do
+    pathname = Rails.root + "spec/fixtures/jobs"
+    pathname.rmtree
+    pathname.mkdir
+  end
 end

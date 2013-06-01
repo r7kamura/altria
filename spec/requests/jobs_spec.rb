@@ -10,7 +10,7 @@ describe "Jobs" do
   end
 
   let(:job) do
-    FactoryGirl.create(:job)
+    Job.create(id: "a")
   end
 
   describe "GET /jobs" do
@@ -36,7 +36,7 @@ describe "Jobs" do
   describe "POST /jobs" do
     before do
       params[:job] = {
-        name: "name",
+        id: "a",
         script: "script",
       }
     end
@@ -52,18 +52,29 @@ describe "Jobs" do
       end
     end
 
+    context "with invalid attributes" do
+      before do
+        params[:job].delete(:id)
+      end
+
+      it "returns 422" do
+        post "/jobs", params, env
+        response.status.should == 422
+      end
+    end
+
     context "with valid condition" do
       it "creates a new job" do
         post "/jobs", params, env
         response.status.should == 201
-        Job.count.should == 1
+        Job.find(params[:job][:id])[:script].should == "script"
       end
     end
   end
 
   describe "PUT /jobs/:id" do
     before do
-      params[:job] = { name: "name" }
+      params[:job] = { script: "ls" }
     end
 
     context "with invalid params" do
@@ -81,7 +92,7 @@ describe "Jobs" do
       it "updates the job" do
         put "/jobs/#{job.id}", params, env
         response.status.should == 204
-        Job.first.name.should == params[:job][:name]
+        job.reload[:script].should == params[:job][:script]
       end
     end
   end
@@ -90,7 +101,7 @@ describe "Jobs" do
     it "deletes the job" do
       delete "/jobs/#{job.id}", params, env
       response.status.should == 204
-      Job.exists?(job.id).should == false
+      Job.should_not be_exist(job.id)
     end
   end
 end
