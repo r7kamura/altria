@@ -18,7 +18,7 @@ class PositiveRecord
     end
 
     def all
-      Pathname.glob("#{directory}/*.#{ext}").map do |pathname|
+      Pathname.glob("#{directory}/*/#{filename}").map do |pathname|
         Job.new(yamlize(pathname))
       end
     end
@@ -31,22 +31,22 @@ class PositiveRecord
       @directory or raise "You must set #{self}.directory"
     end
 
-    def ext
-      "yml"
-    end
-
-    def exists?(filename)
-      pathize(filename).exist?
+    def exists?(id)
+      pathize(id).exist?
     end
 
     def yamlize(pathname)
       YAML.load_file(pathname)
     end
 
+    def pathize(id)
+      directory + "#{id}/#{filename}"
+    end
+
     private
 
-    def pathize(filename)
-      directory + "#{filename}.#{ext}"
+    def filename
+      "attributes.yml"
     end
   end
 
@@ -69,7 +69,7 @@ class PositiveRecord
   end
 
   def pathname
-    self.class.directory + "#{id}.#{self.class.ext}"
+    self.class.pathize(id)
   end
 
   def ==(job)
@@ -82,7 +82,7 @@ class PositiveRecord
 
   def save
     if valid?
-      pathname.open("w") {|file| file.puts(to_yaml) }
+      write
       true
     else
       false
@@ -97,5 +97,12 @@ class PositiveRecord
   def reload
     @attributes = self.class.yamlize(pathname).with_indifferent_access
     self
+  end
+
+  private
+
+  def write
+    pathname.dirname.mkdir rescue nil
+    pathname.open("w") {|file| file.puts(to_yaml) }
   end
 end
