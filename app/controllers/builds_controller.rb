@@ -28,4 +28,8 @@ class BuildsController < ApplicationController
   def require_job
     @job = Job.find(params[:job_id])
   end
+
+  def scope
+    @job.builds
+  end
 end

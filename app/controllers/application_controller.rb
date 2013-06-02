@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-
   def require_resource_params
     head 400 unless resource_params
   end

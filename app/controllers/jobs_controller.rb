@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_filter :require_resource_params, only: [:create, :update]
 
   def index
-    respond_with Job.all
+    respond_with scope
   end
 
   def show
@@ -10,7 +10,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    respond_with Job.create(resource_params.slice(:config, :id, :script))
+    respond_with scope.create(resource_params.slice(:config, :id, :script))
   end
 
   def update
@@ -22,6 +22,10 @@ class JobsController < ApplicationController
   end
 
   private
+
+  def scope
+    Job.scoped
+  end
 
   def resource
     Job.find(params[:id])

@@ -1,4 +1,4 @@
-class Build < PositiveRecord
+class Build < PositiveRecord::Base
   validates :id, presence: true
   validates :job_id, presence: true
 
@@ -29,7 +29,7 @@ class Build < PositiveRecord
   end
 
   def pathname
-    job.pathname.dirname.join("#{id}/attributes.yml")
+    job.pathname.dirname.join("builds/#{id}/attributes.yml")
   end
 
   private

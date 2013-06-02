@@ -23,9 +23,15 @@ describe Job do
     end
 
     context "with non-existent filename " do
-      it "raises a FileNotFound error" do
-        expect { Job.find("non-existent") }.to raise_error Job::FileNotFound
+      it "raises a RecordNotFound error" do
+        expect { Job.find("non-existent") }.to raise_error PositiveRecord::RecordNotFound
       end
+    end
+  end
+
+  describe ".scoped" do
+    it "returns PositiveRecord::Relation" do
+      Job.scoped.should be_a PositiveRecord::Relation
     end
   end
 
@@ -107,7 +113,7 @@ describe Job do
 
   describe "#builds" do
     it "returns an Array of associated Build" do
-      job.builds.should == []
+      job.builds.should be_a PositiveRecord::Relation
     end
   end
 
