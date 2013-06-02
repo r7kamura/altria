@@ -5,6 +5,12 @@ describe Job do
     Job.create(id: "a", script: "script")
   end
 
+  describe ".new" do
+    it "takes a Hash as its attributes" do
+      Job.new(id: "a")[:id].should == "a"
+    end
+  end
+
   describe ".find" do
     before do
       job
@@ -80,6 +86,51 @@ describe Job do
       job.update_attributes(script: "updated")
       job[:script].should == "updated"
       job.reload[:script].should == "updated"
+    end
+  end
+
+  describe "#new_build" do
+    it "initializes a new build" do
+      build = job.new_build
+      build.should be_a Build
+      build.should_not be_persisted
+    end
+  end
+
+  describe "#create_build" do
+    it "creates a new build" do
+      build = job.create_build
+      build.should be_a Build
+      build.should be_persisted
+    end
+  end
+
+  describe "#builds" do
+    it "returns an Array of associated Build" do
+      job.builds.should == []
+    end
+  end
+
+  describe "#persisted?" do
+    it "returns if its file is persisted or not" do
+      job = Job.new(id: "a")
+      job.should_not be_persisted
+      job.save
+      job.should be_persisted
+    end
+  end
+
+  describe "#method_missing" do
+    context "with property's name" do
+      it "returns its property value" do
+        job.id
+      end
+    end
+
+    context "without property's name" do
+      it "raises NoMethodError" do
+        expect { job.foo }.to raise_error(NoMethodError)
+      end
     end
   end
 end

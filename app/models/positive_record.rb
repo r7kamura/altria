@@ -11,15 +11,17 @@ class PositiveRecord
 
     def find(filename)
       if (pathname = pathize(filename)).exist?
-        new(yamlize(pathname))
+        attributes = YAML.load_file(pathname)
+        new(attributes)
       else
-        raise FileNotFound, "#{pathname} is not found"
+        raise PositiveRecord::FileNotFound, "#{pathname} is not found"
       end
     end
 
     def all
-      Pathname.glob("#{directory}/*/#{filename}").map do |pathname|
-        Job.new(yamlize(pathname))
+      Pathname.glob("#{directory}/*/attributes.yml").map do |pathname|
+        attributes = YAML.load_file(pathname)
+        new(attributes)
       end
     end
 
@@ -35,18 +37,22 @@ class PositiveRecord
       pathize(id).exist?
     end
 
-    def yamlize(pathname)
-      YAML.load_file(pathname)
-    end
-
     def pathize(id)
-      directory + "#{id}/#{filename}"
+      directory + "#{id}/attributes.yml"
     end
 
-    private
+    def property(name)
+      properties << name
+    end
 
-    def filename
-      "attributes.yml"
+    def properties
+      @properties ||= []
+    end
+
+    def belongs_to(name)
+      define_method(name) do
+        name.to_s.camelize.constantize.find(send("#{name}_id"))
+      end
     end
   end
 
@@ -58,14 +64,8 @@ class PositiveRecord
 
   delegate :to_yaml, to: :to_hash
 
-  validates :id, presence: true
-
   def initialize(attributes = {})
     @attributes = attributes.with_indifferent_access
-  end
-
-  def id
-    self[:id]
   end
 
   def pathname
@@ -95,8 +95,12 @@ class PositiveRecord
   end
 
   def reload
-    @attributes = self.class.yamlize(pathname).with_indifferent_access
+    @attributes = YAML.load_file(pathname).with_indifferent_access
     self
+  end
+
+  def persisted?
+    pathname.exist?
   end
 
   private
@@ -104,5 +108,13 @@ class PositiveRecord
   def write
     pathname.dirname.mkdir rescue nil
     pathname.open("w") {|file| file.puts(to_yaml) }
+  end
+
+  def method_missing(method_name, *args, &block)
+    if self.class.properties.include?(method_name)
+      self[method_name]
+    else
+      super
+    end
   end
 end

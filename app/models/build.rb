@@ -1,7 +1,15 @@
-class Build < ActiveRecord::Base
-  attr_accessible :finished_at, :started_at, :status
+class Build < PositiveRecord
+  validates :id, presence: true
+  validates :job_id, presence: true
 
-  belongs_to :job, touch: true
+  property :id
+  property :job_id
+
+  belongs_to :job
+
+  def initialize(attributes = {})
+    @attributes = attributes.with_indifferent_access
+  end
 
   # Creates, queues, and returns itself.
   def self.create_with_queue(*args)
@@ -18,6 +26,10 @@ class Build < ActiveRecord::Base
     start
     status = job.run
     finish(status)
+  end
+
+  def pathname
+    job.pathname.dirname.join("#{id}/attributes.yml")
   end
 
   private
