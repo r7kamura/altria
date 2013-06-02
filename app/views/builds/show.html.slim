@@ -1,0 +1,23 @@
+p
+  = link_to "back to job", @resource.job
+
+h1
+  ##{@resource.id}
+
+table
+  tr
+    td started_at
+    td= @resource.started_at
+
+  tr
+    td finished_at
+    td= @resource.finished_at
+
+  tr
+    td status
+    td= @resource.status
+
+  tr
+    td output
+    td
+      pre= @resource.output

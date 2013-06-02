@@ -5,6 +5,7 @@ class CreateBuilds < ActiveRecord::Migration
       t.datetime :started_at
       t.datetime :finished_at
       t.references :job
+      t.text :output
 
       t.timestamps
     end

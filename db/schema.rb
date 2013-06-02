@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130531155155) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "job_id"
+    t.text     "output"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

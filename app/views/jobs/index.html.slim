@@ -1,0 +1,6 @@
+.section
+  h3 jobs
+  ul
+    - @resources.alphabetical.each do |resource|
+      li
+        = link_to resource.name, resource

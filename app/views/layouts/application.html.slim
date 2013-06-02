@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title magi
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+
+  body
+    header
+      h1= link_to "magi", root_path
+
+    .main
+      = yield

@@ -2,7 +2,10 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "jquery-rails"
+gem "quiet_assets"
 gem "sidekiq"
+gem "slim"
 
 group :development, :test do
   gem "pry-rails"
@@ -14,6 +17,7 @@ group :test do
   gem "rspec-json_matcher"
   gem "rspec-rails"
   gem "simplecov"
+  gem "thin"
 end
 
 group :assets do

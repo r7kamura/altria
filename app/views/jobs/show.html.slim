@@ -1,0 +1,25 @@
+.section
+  h1
+    ##{@resource.id}
+
+.section
+  h3 recent builds
+  ul
+    - @resource.builds.recent.limit(10).each do |build|
+      li
+        = link_to [@resource, build] do
+          span ##{build.id}
+          span #{build.started_at}
+
+.section
+  h3 attributes
+  table
+    tr
+      td created_at
+      td= @resource.created_at
+    tr
+      td updated_at
+      td= @resource.updated_at
+    tr
+      td script
+      td= text_area_tag "", @resource.script, readonly: true

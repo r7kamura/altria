@@ -1,3 +1,5 @@
+require "tempfile"
+
 class Job < ActiveRecord::Base
   attr_accessible :name, :config
 
@@ -7,9 +9,11 @@ class Job < ActiveRecord::Base
 
   has_many :builds
 
+  scope :alphabetical, -> { order("name") }
+
   def start
-    if script
-      system(script)
+    if has_script?
+      invoke
     else
       raise ScriptNotFound
     end
@@ -17,6 +21,17 @@ class Job < ActiveRecord::Base
 
   def script
     config["script"]
+  end
+
+  def has_script?
+    !!script
+  end
+
+  def invoke
+    temp = Tempfile.new("")
+    status = system(script, out: temp, err: temp)
+    temp.close
+    { status: status, output: temp.open.read }
   end
 
   class ScriptNotFound < StandardError; end
