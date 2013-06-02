@@ -22,14 +22,4 @@ RSpec.configure do |config|
 
   config.include RSpec::JsonMatcher, type: :request
   config.include ResponseCodeMatchers, type: :request
-
-  config.before do
-    Job.stub(directory: Rails.root + "spec/fixtures/jobs")
-  end
-
-  config.after do
-    pathname = Rails.root + "spec/fixtures/jobs"
-    pathname.rmtree
-    pathname.mkdir
-  end
 end

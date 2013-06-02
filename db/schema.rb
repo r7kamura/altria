@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130531155155) do
 
   create_table "builds", :force => true do |t|
-    t.integer  "status"
+    t.boolean  "status"
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "job_id"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20130531155155) do
 
   create_table "jobs", :force => true do |t|
     t.string   "name"
-    t.text     "script"
     t.text     "config"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

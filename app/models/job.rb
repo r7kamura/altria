@@ -1,24 +1,23 @@
-class Job < PositiveRecord::Base
-  self.directory = Magi::Config.jobs_directory
+class Job < ActiveRecord::Base
+  attr_accessible :name, :config
 
-  validates :id, presence: true
+  serialize :config, Hash
 
-  property :id
+  validates :name, presence: true
 
   has_many :builds
 
-  def new_build(attributes = {})
-    Build.new(attributes.merge(job_id: id))
+  def start
+    if script
+      system(script)
+    else
+      raise ScriptNotFound
+    end
   end
 
-  def create_build(attributes = {})
-    attributes[:id] = next_build_id
-    new_build(attributes).tap(&:save)
+  def script
+    config["script"]
   end
 
-  private
-
-  def next_build_id
-    builds.count + 1
-  end
+  class ScriptNotFound < StandardError; end
 end

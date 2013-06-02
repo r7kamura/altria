@@ -10,11 +10,11 @@ class JobsController < ApplicationController
   end
 
   def create
-    respond_with scope.create(resource_params.slice(:config, :id, :script))
+    respond_with scope.create(resource_params.slice(:config, :name))
   end
 
   def update
-    respond_with resource.update_attributes(resource_params.slice(:config, :script))
+    respond_with resource.update_attributes(resource_params.slice(:config, :name))
   end
 
   def destroy
