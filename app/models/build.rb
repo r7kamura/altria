@@ -5,11 +5,6 @@ class Build < ActiveRecord::Base
 
   belongs_to :job, touch: true
 
-  # Creates, queues, and returns itself.
-  def self.create_with_queue(*args)
-    create(*args).tap(&:queue)
-  end
-
   # Pushes this build to worker's queue.
   def queue
     BuildWorker.perform_async(id)
