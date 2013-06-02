@@ -1,12 +1,6 @@
 # Magi
 A continuous integration server implementation.
 
-## Ingredients
-* Ruby
-* Rails
-* Redis
-* MySQL
-
 ## Usage
 Magi is just a rails application.
 Feel free to do what you want.
@@ -34,9 +28,11 @@ $ bundle exec rspec
 * scheduling system
 * worker process management
 * html interface
-* json interface
 * magi command
 * extensible plugin system
 
 ## Architecture
-* Almost all records in magi system are stored as a file (e.g. job config, system config, and build logs)
+* Ruby on Rails as HTTP server
+* Sidekiq for background worker
+* Redis for worker queue
+* MySQL for storing jobs & builds
