@@ -18,6 +18,7 @@ class Build < ActiveRecord::Base
   # Runs this build, usually called from BuildWorker#perform.
   def start
     update_attributes!(started_at: Time.now)
-    update_attributes!(finished_at: Time.now, status: job.start)
+    status = job.start
+    update_attributes!(finished_at: Time.now, status: status)
   end
 end
