@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "response_code_matchers"
   spec.add_development_dependency "rspec-json_matcher"
   spec.add_development_dependency "rspec-rails"
+  spec.add_development_dependency "simplecov"
 end

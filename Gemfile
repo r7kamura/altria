@@ -9,10 +9,11 @@ group :development, :test do
 end
 
 group :test do
-  gem "rspec-rails"
-  gem "rspec-json_matcher"
-  gem "response_code_matchers"
   gem "factory_girl_rails"
+  gem "response_code_matchers"
+  gem "rspec-json_matcher"
+  gem "rspec-rails"
+  gem "simplecov"
 end
 
 group :assets do
