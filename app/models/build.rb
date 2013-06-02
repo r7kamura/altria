@@ -3,7 +3,7 @@ class Build < ActiveRecord::Base
 
   validates :job_id, presence: true
 
-  belongs_to :job
+  belongs_to :job, touch: true
 
   # Creates, queues, and returns itself.
   def self.create_with_queue(*args)
