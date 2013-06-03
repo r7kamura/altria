@@ -27,9 +27,11 @@ module Magi
     def call
       case name
       when "setup"
+        setup
       when "start"
-      when "worker"
+        start
       else
+        puts "Usage: magi {setup|start}"
       end
     end
 
@@ -37,6 +39,18 @@ module Magi
 
     def name
       @argv[0]
+    end
+
+    def setup
+      system("cd #{root_path} && bundle exec rake db:create db:migrate")
+    end
+
+    def start
+      system("cd #{root_path} && foreman start")
+    end
+
+    def root_path
+      File.expand_path("../../..", __FILE__)
     end
   end
 end

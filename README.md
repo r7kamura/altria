@@ -1,7 +1,20 @@
 # Magi
 A continuous integration server implementation.
 
+## Install
+```
+$ gem install magi
+$ brew install mysql redis # or other commands to install MySQL and Redis
+```
+
 ## Usage
+```
+$ gem install magi
+$ magi setup
+$ magi start # open http://localhost:3000
+```
+
+## Hack
 Magi is just a rails application.
 Feel free to do what you want.
 
@@ -15,24 +28,13 @@ $ bundle exec rake db:create db:migrate
 $ rails s
 ```
 
-## Testing
-```
-$ git clone git@github.com:r7kamura/magi.git
-$ cd magi
-$ bundle install
-$ RAILS_ENV=test bundle exec rake db:create db:migrate
-$ bundle exec rspec
-```
+## Architecture
+* Rails: HTTP server
+* Sidekiq: background worker
+* Redis: worker queue
+* MySQL: store jobs & builds
 
 ## ToDo
 * scheduling system
-* worker process management
-* html interface
-* magi command
-* extensible plugin system
-
-## Architecture
-* Ruby on Rails as HTTP server
-* Sidekiq for background worker
-* Redis for worker queue
-* MySQL for storing jobs & builds
+* plugin system
+* cli options (e.g. port, RAILS_ENV, redis conf)
