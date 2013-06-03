@@ -59,7 +59,7 @@ describe "Builds" do
   end
 
   describe "DELETE /jobs/:job_id/builds/:id" do
-    it "updates the build" do
+    it "deletes the build" do
       delete "/jobs/#{job.id}/builds/#{build.id}", params, env
       response.status.should == 204
       Build.should have(0).build
