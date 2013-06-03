@@ -12,7 +12,16 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/r7kamura/magi"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files`.split($/)
+  spec.files         = Dir["{app,bin,config,db,lib,public,script,spec}/**/*"]
+  spec.files         += %w[
+                          Gemfile
+                          LICENSE.txt
+                          Procfile
+                          README.md
+                          Rakefile
+                          config.ru
+                          magi.gemspec
+                        ]
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
@@ -24,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mysql2"
   spec.add_dependency "quiet_assets"
   spec.add_dependency "rails", "3.2.13"
-  spec.add_dependency "sass-rails",   "~> 3.2.3"
+  spec.add_dependency "sass-rails", "~> 3.2.3"
   spec.add_dependency "sidekiq"
   spec.add_dependency "slim"
   spec.add_dependency "uglifier", ">= 1.0.3"

@@ -43,7 +43,7 @@ module Magi
     end
 
     def start
-      system("cd #{root_path} && foreman start")
+      system("cd #{root_path} && bundle exec foreman start")
     end
 
     def root_path
