@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "font-awesome-rails"
 gem "jquery-rails"
 gem "quiet_assets"
 gem "sidekiq"

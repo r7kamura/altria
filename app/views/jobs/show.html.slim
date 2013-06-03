@@ -1,25 +1,21 @@
 .section
   h1
-    ##{@resource.id}
+    = @resource.name
 
 .section
-  h3 recent builds
-  ul
+  = form_tag [@resource, :builds] do
+    = button_tag [@resource, :builds], class: "btn btn-warning" do
+      i.icon-play
+      ' Run
+
+.section
+  table.table
     - @resource.builds.recent.limit(10).each do |build|
-      li
-        = link_to [@resource, build] do
-          span ##{build.id}
-          span #{build.started_at}
-
-.section
-  h3 attributes
-  table
-    tr
-      td created_at
-      td= @resource.created_at
-    tr
-      td updated_at
-      td= @resource.updated_at
-    tr
-      td script
-      td= text_area_tag "", @resource.script, readonly: true
+      tr
+        td
+          - if build.status
+            i.icon-ok
+          - else
+            i.icon-remove
+        td ##{build.id}
+        td= link_to build.finished_at, [@resource, build]

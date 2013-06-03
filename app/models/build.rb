@@ -18,4 +18,9 @@ class Build < ActiveRecord::Base
     result = job.start
     update_attributes!(finished_at: Time.now, status: result[:status], output: result[:output])
   end
+
+  # Returns elapsed sec as a Float or nil.
+  def sec
+    finished_at - started_at if finished_at && started_at
+  end
 end
