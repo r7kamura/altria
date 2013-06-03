@@ -8,11 +8,8 @@
 #   # Invokes "setup" command to set up your database.
 #   Magi::Command.call(["setup"])
 #
-#   # Invokes "web" command to start a HTTP server.
-#   Magi::Command.call(["web"])
-#
-#   # Invokes "worker" command to start a worker for your jobs.
-#   Magi::Command.call(["worker"])
+#   # Invokes "start" command to start redis, rails, and sidekiq processes.
+#   Magi::Command.call(["start"])
 #
 module Magi
   class Command
