@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
     head 400 unless resource_params
   end
 
-  def resource
-    scope.find(params[:id])
-  end
-
   def resource_name
     self.class.name.split("::").last.sub(/Controller$/, "").singularize.underscore
   end

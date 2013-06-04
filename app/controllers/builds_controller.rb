@@ -13,7 +13,7 @@ class BuildsController < ApplicationController
   end
 
   def create
-    resource = scope.create.tap(&:queue)
+    resource = @job.queue
     respond_with resource, location: [@job, resource]
   end
 

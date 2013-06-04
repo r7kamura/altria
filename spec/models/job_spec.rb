@@ -18,8 +18,36 @@ describe Job do
       end
 
       it "starts its job" do
-        job.should_receive(:system).with("true")
+        Magi::Executer.should_receive(:execute).with("true")
         job.start
+      end
+    end
+  end
+
+  describe "#scheduled?" do
+    context "without schedule" do
+      it "returns false" do
+        job.should_not be_scheduled
+      end
+    end
+
+    context "with matched schedule" do
+      before do
+        job.config["schedule"] = "* * * * *"
+      end
+
+      it "returns true" do
+        job.should be_scheduled
+      end
+    end
+
+    context "without matched schedule" do
+      before do
+        job.config["schedule"] = "0 0 0 0 0"
+      end
+
+      it "returns false" do
+        job.should_not be_scheduled
       end
     end
   end
