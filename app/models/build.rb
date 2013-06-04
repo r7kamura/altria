@@ -5,7 +5,9 @@ class Build < ActiveRecord::Base
 
   belongs_to :job, touch: true
 
-  scope :recent, -> { order("id DESC") }
+  scope :recent, -> { order("created_at DESC") }
+
+  scope :finished, -> { where("finished_at IS NOT NULL") }
 
   # Pushes this build to worker's queue.
   def queue
@@ -22,5 +24,16 @@ class Build < ActiveRecord::Base
   # Returns elapsed sec as a Float or nil.
   def sec
     finished_at - started_at if finished_at && started_at
+  end
+
+  def status_name
+    case status
+    when true
+      "success"
+    when false
+      "failure"
+    when nil
+      "unfinished"
+    end
   end
 end

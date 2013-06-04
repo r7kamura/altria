@@ -1,0 +1,56 @@
+@import "mixin";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #333;
+  font-family: "Helvetica Neue", "Calibri", sans-serif;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+i {
+  margin-right: .3em;
+}
+
+*:before {
+  margin-right: .3em;
+  font-family: FontAwesome;
+}
+
+.button {
+  @include box;
+  width: 220px;
+  font-size: 1em;
+  color: white;
+  background: #E74C3C;
+  border-color: #E74C3C;
+  line-height: inherit;
+}
+
+section.breadcrumbs {
+  ul {
+    @include box;
+    border-color: #eee;
+    background: #eee;
+    list-style: none;
+    overflow: hidden;
+    color: #888;
+  }
+
+  li {
+    float: left;
+    margin-right: 1em;
+  }
+
+  li.delimiter:before {
+    content: "\F105";
+  }
+}

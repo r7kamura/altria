@@ -1,21 +1,24 @@
-.section
+section.breadcrumbs
+  ul
+    li= link_to "Home", jobs_path
+    li.delimiter
+    li= link_to @resource.name, @resource
+
+section.builds
   h1
     = @resource.name
 
-.section
+  p
+    = @resource.description || "(no description)"
+
   = form_tag [@resource, :builds] do
-    = button_tag [@resource, :builds], class: "btn btn-warning" do
+    = button_tag [@resource, :builds], class: "button" do
       i.icon-play
       ' Run
 
-.section
-  table.table
+  ul
     - @resource.builds.recent.limit(10).each do |build|
-      tr
-        td
-          - if build.status
-            i.icon-ok
-          - else
-            i.icon-remove
-        td ##{build.id}
-        td= link_to build.finished_at, [@resource, build]
+      li class = build.status_name
+        = link_to [@resource, build] do
+          span.id ##{build.id}
+          span= build.finished_at

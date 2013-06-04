@@ -7,22 +7,30 @@ class Job < ActiveRecord::Base
 
   has_many :builds
 
-  scope :alphabetical, -> { order("name") }
+  scope :recent, -> { order("updated_at DESC") }
 
-  def self.queue
-    select(&:scheduled?).each(&:queue)
+  delegate :status_name, :status_icon_css_class, to: :last_finished_build
+
+  class << self
+    def queue
+      select(&:scheduled?).each(&:queue)
+    end
+
+    def property(name)
+      define_method(name) do
+        config[name.to_s]
+      end
+    end
   end
+
+  property(:description)
+
+  property(:schedule)
+
+  property(:script)
 
   def start
-    has_script? ? execute : raise_script_not_found
-  end
-
-  def script
-    config["script"]
-  end
-
-  def schedule
-    config["schedule"]
+    script ? execute : raise_script_not_found
   end
 
   def scheduler
@@ -30,22 +38,22 @@ class Job < ActiveRecord::Base
   end
 
   def scheduled?
-    has_schedule? && scheduler.scheduled?
+    schedule && scheduler.scheduled?
   end
 
   def queue
     builds.create.tap(&:queue)
   end
 
+  def status
+    last_finished_build.try(:status)
+  end
+
+  def last_finished_build
+    builds.finished.order(:finished_at).last
+  end
+
   private
-
-  def has_script?
-    !!script
-  end
-
-  def has_schedule?
-    !!schedule
-  end
 
   def execute
     Magi::Executer.execute(script)

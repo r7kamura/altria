@@ -1,27 +1,36 @@
-p
-  = link_to "back to job", @resource.job
+section.breadcrumbs
+  ul
+    li= link_to "Home", jobs_path
+    li.delimiter
+    li= link_to @resource.job.name, @resource.job
+    li.delimiter
+    li= link_to "##{@resource.id}", [@resource.job, @resource]
 
-h1
-  ##{@resource.id}
+section.build class = @resource.status_name
+  h1
+    span ##{@resource.id}
 
-table
-  tr
-    td started_at
-    td= @resource.started_at
+  table
+    tr
+      td started_at
+      td= ":"
+      td= @resource.started_at
 
-  tr
-    td finished_at
-    td= @resource.finished_at
+    tr
+      td finished_at
+      td= ":"
+      td= @resource.finished_at
 
-  tr
-    td sec
-    td= @resource.sec
+    tr
+      td sec
+      td= ":"
+      td= @resource.sec
 
-  tr
-    td status
-    td= @resource.status
+    tr
+      td status
+      td= ":"
+      td= @resource.status_name
 
-  tr
-    td output
-    td
-      pre= @resource.output
+  pre
+    code
+      = @resource.output

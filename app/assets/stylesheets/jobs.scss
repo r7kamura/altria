@@ -1,0 +1,57 @@
+@import "mixin";
+
+section.jobs {
+  h1:before {
+    content: "\F13D";
+  }
+
+  p {
+    color: #ccc;
+  }
+
+  ul {
+    margin-top: 1em;
+  }
+}
+
+section.builds,
+section.jobs {
+  ul {
+    list-style: none;
+  }
+
+  li a {
+    @include box;
+    display: block;
+  }
+
+  li a:hover {
+    background: #fafafa;
+  }
+
+  li.unfinished a:before {
+    content: "\F056";
+  }
+
+  li.success a:before {
+    content: "\F058";
+    color: #27AE60;
+  }
+
+  li.failure a:before {
+    content: "\F057";
+    color: #C0392B;
+  }
+
+  li.success a {
+    border-color: #27AE60;
+  }
+
+  li.failure a {
+    border-color: #C0392B;
+  }
+
+  li span {
+    margin-right: 1em;
+  }
+}

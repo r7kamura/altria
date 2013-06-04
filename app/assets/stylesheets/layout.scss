@@ -1,12 +1,19 @@
-header,
-.main {
+header {
+  background: #333;
+
+  a {
+    color: white;
+    font-weight: normal;
+  }
+
+  .inner {
+    width: 920px;
+    margin: 0 auto;
+  }
+}
+
+section {
   width: 920px;
   margin: 0 auto;
   padding: 20px;
-}
-
-header {
-  a {
-    text-decoration: none;
-  }
 }

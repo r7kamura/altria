@@ -1,6 +1,13 @@
-.section
-  h3 jobs
+section.breadcrumbs
   ul
-    - @resources.alphabetical.each do |resource|
-      li
-        = link_to resource.name, resource
+    li= link_to "Home", jobs_path
+
+section.jobs
+  h1 JOBS
+  p #{Job.count} jobs are found.
+  ul
+    - @resources.recent.each do |resource|
+      li class = resource.status_name
+        = link_to resource do
+          span
+            = resource.name

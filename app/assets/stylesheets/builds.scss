@@ -1,0 +1,52 @@
+@import "mixin";
+
+section.builds {
+  h1:before {
+    content: "\F0FB";
+  }
+
+  p {
+    color: #ccc;
+  }
+
+  .button {
+    margin-top: .5em;
+  }
+
+  ul {
+    margin-top: 1em;
+  }
+}
+
+section.build {
+  &.success h1 {
+    color: #27AE60;
+  }
+
+  &.failure h1 {
+    color: #C0392B;
+  }
+
+  &.success h1 span:before {
+    content: "\F058";
+  }
+
+  &.build.failure h1 span:before {
+    content: "\F057";
+  }
+
+  &.build.unfinished h1 span:before {
+    content: "\F056";
+  }
+
+  td {
+    padding-right: 1em;
+  }
+
+  pre {
+    @include box;
+    margin-top: 1em;
+    padding: .5em 1em;
+    background: #f2f2f2;
+  }
+}
