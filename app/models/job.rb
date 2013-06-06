@@ -20,6 +20,10 @@ class Job < ActiveRecord::Base
       define_method(name) do
         config[name.to_s]
       end
+
+      define_method("#{name}=") do |value|
+        config[name.to_s] = value
+      end
     end
   end
 
