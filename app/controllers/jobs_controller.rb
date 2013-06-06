@@ -16,7 +16,7 @@ class JobsController < ApplicationController
   end
 
   def create
-    respond_with scope.create_with_properties(resource_params)
+    respond_with @resource = scope.create_with_properties(resource_params)
   end
 
   def update

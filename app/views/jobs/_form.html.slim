@@ -1,0 +1,27 @@
+section.job_settings
+  h1 Settings
+
+  = form_for resource do |f|
+    .field
+      p= f.label :name
+      p= f.text_field :name, placeholder: "required"
+
+    .field
+      p= f.label :description
+      p= f.text_area :description, rows: 3
+
+    .field
+      p= f.label :script
+      p= f.text_area :script, rows: 6
+
+    .field
+      p= f.label :schedule
+      p= f.text_field :schedule, placeholder: "* * * * *"
+
+    - (resource.class.properties - [:description, :schedule, :script]).each do |name|
+      .field
+        p= f.label name
+        p= f.text_field name
+
+    .field
+      p= f.submit class: "button"

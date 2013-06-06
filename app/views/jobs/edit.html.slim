@@ -6,26 +6,4 @@ section.breadcrumbs
     li.delimiter
     li= link_to "settings", edit_job_path(@resource)
 
-section.job_settings
-  h1 Settings
-
-  = form_for @resource do |f|
-    .field
-      p= f.label :name
-      p= f.text_field :name
-
-    .field
-      p= f.label :description
-      p= f.text_area :description, rows: 3
-
-    .field
-      p= f.label :script
-      p= f.text_area :script, rows: 6
-
-    - (@resource.class.properties - [:description, :script]).each do |name|
-      .field
-        p= f.label name
-        p= f.text_field name
-
-    .field
-      p= f.submit class: "button"
+= render "form", resource: @resource
