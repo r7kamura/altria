@@ -1,7 +1,7 @@
 # Magi
 A continuous integration server implementation.
 
-![](http://dl.dropbox.com/u/5978869/image/20130605_021637.png)
+![](http://dl.dropbox.com/u/5978869/image/20130607_012059.png)
 
 ## Install
 ```
