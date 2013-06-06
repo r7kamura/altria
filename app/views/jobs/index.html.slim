@@ -4,7 +4,13 @@ section.breadcrumbs
 
 section.jobs
   h1 JOBS
+
   p #{Job.count} jobs are found.
+
+
+  .buttons
+    = link_to "New", [:new, :job], class: "button new"
+
   ul
     - @resources.recent.each do |resource|
       li class = resource.status_name

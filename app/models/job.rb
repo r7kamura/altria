@@ -9,14 +9,22 @@ class Job < ActiveRecord::Base
 
   scope :recent, -> { order("updated_at DESC") }
 
-  delegate :status_name, :status_icon_css_class, to: :last_finished_build
+  delegate :status, :status_name, :status_icon_css_class, to: :last_finished_build, allow_nil: true
 
   class << self
+    def create_with_properties(properties)
+      job = new
+      properties.each {|key, value| job.send("#{key}=", value) }
+      job.tap(&:save)
+    end
+
     def queue
       select(&:scheduled?).each(&:queue)
     end
 
     def property(name)
+      properties << name
+
       define_method(name) do
         config[name.to_s]
       end
@@ -24,6 +32,10 @@ class Job < ActiveRecord::Base
       define_method("#{name}=") do |value|
         config[name.to_s] = value
       end
+    end
+
+    def properties
+      @properties ||= []
     end
   end
 
@@ -49,12 +61,17 @@ class Job < ActiveRecord::Base
     builds.create.tap(&:queue)
   end
 
-  def status
-    last_finished_build.try(:status)
+  def status_name
+    last_finished_build.try(:status_name) || "unfinished"
   end
 
   def last_finished_build
     builds.finished.order(:finished_at).last
+  end
+
+  def update_attributes_with_properties(properties)
+    properties.each {|key, value| send("#{key}=", value) }
+    tap(&:save)
   end
 
   private

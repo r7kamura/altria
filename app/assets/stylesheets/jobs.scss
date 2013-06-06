@@ -14,9 +14,67 @@ section.jobs {
   }
 }
 
-section.builds,
-section.jobs {
+section.job_settings {
+  h1:before {
+    content: "\F085";
+  }
+
+  td {
+    padding-right: 1em;
+  }
+
+  input[type="submit"] {
+    margin-top: 1em;
+    background: #34495e;
+    border-color: #34495e;
+  }
+}
+
+section.jobs,
+section.builds {
+  .buttons {
+    overflow: hidden;
+  }
+
+  .buttons a {
+    float: left;
+    display: block;
+    margin-right: 1em;
+  }
+
+  .buttons a.new:before {
+    content: "\F040";
+  }
+
+  .buttons a.run:before {
+    content: "\F04B";
+  }
+
+  .buttons a.new,
+  .buttons a.settings {
+    background: #2C3E50;
+    border-color: #2C3E50;
+  }
+
+  .buttons a.settings:before {
+    content: "\F013";
+  }
+
+  .buttons a.delete {
+    background: #C0392B;
+    border-color: #C0392B;
+  }
+
+  .buttons a.delete:before {
+    content: "\F014";
+  }
+
+  .button {
+    margin-top: .5em;
+  }
+
   ul {
+    margin-top: 1em;
     list-style: none;
   }
 
@@ -53,5 +111,11 @@ section.jobs {
 
   li span {
     margin-right: 1em;
+  }
+}
+
+section.builds {
+  h1:before {
+    content: "\F0FB";
   }
 }

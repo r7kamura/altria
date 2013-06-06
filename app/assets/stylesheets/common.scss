@@ -20,6 +20,17 @@ i {
   margin-right: .3em;
 }
 
+textarea,
+input {
+  font-size: 1em;
+}
+
+textarea,
+input[type="text"] {
+  @include box;
+  width: 100%;
+}
+
 *:before {
   margin-right: .3em;
   font-family: FontAwesome;
@@ -27,12 +38,14 @@ i {
 
 .button {
   @include box;
-  width: 220px;
+  width: 10em;
   font-size: 1em;
   color: white;
-  background: #E74C3C;
-  border-color: #E74C3C;
+  background: #F39C12;
+  border-color: #F39C12;
   line-height: inherit;
+  cursor: pointer;
+  text-align: center;
 }
 
 section.breadcrumbs {

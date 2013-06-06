@@ -1,23 +1,5 @@
 @import "mixin";
 
-section.builds {
-  h1:before {
-    content: "\F0FB";
-  }
-
-  p {
-    color: #ccc;
-  }
-
-  .button {
-    margin-top: .5em;
-  }
-
-  ul {
-    margin-top: 1em;
-  }
-}
-
 section.build {
   &.success h1 {
     color: #27AE60;
@@ -47,6 +29,7 @@ section.build {
     @include box;
     margin-top: 1em;
     padding: .5em 1em;
-    background: #f2f2f2;
+    background: #eee;
+    overflow-x: scroll;
   }
 }
