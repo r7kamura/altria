@@ -18,7 +18,6 @@ group :test do
   gem "rspec-json_matcher"
   gem "rspec-rails"
   gem "simplecov"
-  gem "thin"
 end
 
 group :assets do

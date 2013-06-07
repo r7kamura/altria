@@ -1,4 +1,4 @@
 redis: redis-server
-rails: bundle exec rails s
-sidekiq: bundle exec sidekiq
-clockwork: bundle exec clockwork script/clock.rb
+rails: rails s
+sidekiq: sidekiq
+clockwork: clockwork script/clock.rb
