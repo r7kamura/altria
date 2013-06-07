@@ -20,10 +20,12 @@ Magi is just a rails application.
 Feel free to do what you want.
 
 ### tools
-* Rails: HTTP server
-* Sidekiq: background worker
-* Redis: worker queue
+* Clockwork: scheduler
+* Foreman: process manager
 * MySQL: store jobs & builds
+* Rails: HTTP server
+* Redis: worker queue
+* Resque: background worker
 
 ### todo
 * plugin system
