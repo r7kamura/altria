@@ -1,8 +1,13 @@
 class BuildWorker
-  include Sidekiq::Worker
+  @queue = name
 
-  # Takes a build id and invokes it.
-  def perform(id)
-    Build.find(id).start
+  class << self
+    def perform(id)
+      Build.find(id).start
+    end
+
+    def perform_async(id)
+      Resque.enqueue(self, id)
+    end
   end
 end

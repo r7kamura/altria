@@ -1,4 +1,4 @@
 redis: redis-server
 rails: rails s
-sidekiq: sidekiq
-clockwork: clockwork script/clock.rb
+worker: rake resque:work QUEUE="*"
+clock: clockwork script/clock.rb

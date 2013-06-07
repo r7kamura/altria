@@ -14,7 +14,7 @@ describe Job do
 
     context "with script" do
       before do
-        job.config["script"] = "true"
+        job.script = "true"
       end
 
       it "starts its job" do

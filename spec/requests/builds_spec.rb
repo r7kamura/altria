@@ -10,7 +10,7 @@ describe "Builds" do
   end
 
   let(:job) do
-    FactoryGirl.create(:job)
+    FactoryGirl.create(:job, config: { "script" => "true" })
   end
 
   let(:build) do
@@ -42,7 +42,7 @@ describe "Builds" do
       post "/jobs/#{job.id}/builds", params, env
       response.status.should == 201
       response.body.should be_json(Hash)
-      BuildWorker.jobs.should have(1).queue
+      job.builds.should have(1).builds
     end
   end
 

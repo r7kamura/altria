@@ -5,7 +5,7 @@ gemspec
 gem "font-awesome-rails"
 gem "jquery-rails"
 gem "quiet_assets"
-gem "sidekiq"
+gem "resque"
 gem "slim"
 
 group :development, :test do
