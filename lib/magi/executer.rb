@@ -1,4 +1,4 @@
-require "tempfile"
+require "open3"
 
 module Magi
   class Executer
@@ -6,26 +6,15 @@ module Magi
       new(*args).execute
     end
 
+    attr_reader :script
+
     def initialize(script)
       @script = script
     end
 
     def execute
-      { status: status, output: output }
-    end
-
-    private
-
-    def tempfile
-      @tempfile ||= Tempfile.new("")
-    end
-
-    def status
-      system(@script, out: tempfile, err: tempfile)
-    end
-
-    def output
-      tempfile.tap(&:close).open.read
+      output, status = Open3.capture2e(script)
+      { output: output, status: status.success? }
     end
   end
 end
