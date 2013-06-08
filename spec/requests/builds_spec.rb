@@ -22,7 +22,7 @@ describe "Builds" do
       build
     end
 
-    it "returns builds of the job" do
+    it "returns builds of the job", :autodoc do
       get "/jobs/#{job.id}/builds", params, env
       response.status.should == 200
       response.body.should be_json([Hash])
@@ -30,7 +30,7 @@ describe "Builds" do
   end
 
   describe "GET /jobs/:job_id/builds/:id" do
-    it "returns the build" do
+    it "returns the build", :autodoc do
       get "/jobs/#{job.id}/builds/#{build.id}", params, env
       response.status.should == 200
       response.body.should be_json(Hash)
@@ -38,7 +38,7 @@ describe "Builds" do
   end
 
   describe "POST /jobs/:job_id/builds" do
-    it "creates a new build and queue it" do
+    it "creates a new build and queue it", :autodoc do
       post "/jobs/#{job.id}/builds", params, env
       response.status.should == 201
       response.body.should be_json(Hash)
@@ -51,7 +51,7 @@ describe "Builds" do
       params[:build] = { status: true }
     end
 
-    it "updates the build" do
+    it "updates the build", :autodoc do
       put "/jobs/#{job.id}/builds/#{build.id}", params, env
       response.status.should == 204
       build.reload.status.should == true
@@ -59,7 +59,7 @@ describe "Builds" do
   end
 
   describe "DELETE /jobs/:job_id/builds/:id" do
-    it "deletes the build" do
+    it "deletes the build", :autodoc do
       delete "/jobs/#{job.id}/builds/#{build.id}", params, env
       response.status.should == 204
       Build.should have(0).build

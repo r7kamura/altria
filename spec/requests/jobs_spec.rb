@@ -18,7 +18,7 @@ describe "Jobs" do
       job
     end
 
-    it "returns jobs" do
+    it "returns jobs", :autodoc do
       get "/jobs", params, env
       response.status.should == 200
       response.body.should be_json([Hash])
@@ -26,7 +26,7 @@ describe "Jobs" do
   end
 
   describe "GET /jobs/:id" do
-    it "returns the job" do
+    it "returns the job", :autodoc do
       get "/jobs/#{job.id}", params, env
       response.status.should == 200
       response.body.should be_json(Hash)
@@ -50,7 +50,7 @@ describe "Jobs" do
     end
 
     context "with valid condition" do
-      it "creates a new job" do
+      it "creates a new job", :autodoc do
         post "/jobs", params, env
         response.status.should == 201
         Job.should have(1).job
@@ -75,7 +75,7 @@ describe "Jobs" do
     end
 
     context "with valid condition" do
-      it "updates the job" do
+      it "updates the job", :autodoc do
         put "/jobs/#{job.id}", params, env
         response.status.should == 204
         job.reload.name.should == "name"
