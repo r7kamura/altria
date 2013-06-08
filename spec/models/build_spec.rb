@@ -6,7 +6,7 @@ describe Build do
   end
 
   let(:job) do
-    FactoryGirl.create(:job, config: { "script" => "true" })
+    FactoryGirl.create(:job, properties: { "script" => "true" })
   end
 
   describe "#start" do
@@ -21,7 +21,7 @@ describe Build do
 
     context "with failure" do
       before do
-        build.job.config["script"] = "false"
+        build.job.script = "false"
       end
 
       it "starts its job and sets status with false" do

@@ -1,7 +1,7 @@
 class Job < ActiveRecord::Base
-  attr_accessible :name, :config
+  attr_accessible :name, :properties
 
-  serialize :config, Hash
+  serialize :properties, Hash
 
   validates :name, presence: true
 
@@ -26,11 +26,11 @@ class Job < ActiveRecord::Base
       properties << name
 
       define_method(name) do
-        config[name.to_s]
+        properties[name.to_s]
       end
 
       define_method("#{name}=") do |value|
-        config[name.to_s] = value
+        properties[name.to_s] = value
       end
     end
 
@@ -81,7 +81,7 @@ class Job < ActiveRecord::Base
   end
 
   def raise_script_not_found
-    raise ScriptNotFound, 'You must set script["config"]'
+    raise ScriptNotFound, 'You must set properties["script"]'
   end
 
   class ScriptNotFound < StandardError; end

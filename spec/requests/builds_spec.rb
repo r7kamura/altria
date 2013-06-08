@@ -10,7 +10,7 @@ describe "Builds" do
   end
 
   let(:job) do
-    FactoryGirl.create(:job, config: { "script" => "true" })
+    FactoryGirl.create(:job, properties: { "script" => "true" })
   end
 
   let(:build) do

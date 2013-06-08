@@ -33,7 +33,7 @@ describe Job do
 
     context "with matched schedule" do
       before do
-        job.config["schedule"] = "* * * * *"
+        job.schedule = "* * * * *"
       end
 
       it "returns true" do
@@ -43,7 +43,7 @@ describe Job do
 
     context "without matched schedule" do
       before do
-        job.config["schedule"] = "0 0 0 0 0"
+        job.schedule = "0 0 0 0 0"
       end
 
       it "returns false" do
