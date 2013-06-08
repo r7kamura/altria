@@ -16,17 +16,15 @@ $ magi start # open http://localhost:3000
 ```
 
 ## Hack
-Magi is just a rails application.
-Feel free to do what you want.
+Magi is just a rails application with some middlewares.
 
-### tools
-* Clockwork: scheduler
-* Foreman: process manager
-* MySQL: store jobs & builds
-* Rails: HTTP server
-* Redis: worker queue
-* Resque: background worker
+* clockwork: scheduler
+* foreman: process manager
+* mysql: store jobs & builds
+* resque: background worker using redis
 
-### todo
+## Todo
+* async update by ajax
 * plugin system
-* cli options (e.g. http port, rails env, redis conf)
+* git integration
+* command-line options
