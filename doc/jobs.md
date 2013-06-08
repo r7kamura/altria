@@ -12,10 +12,10 @@ response:
 [
   {
         "config" => {},
-    "created_at" => "2013-06-08T12:35:22Z",
-            "id" => 8257,
+    "created_at" => "2013-06-08T12:48:39Z",
+            "id" => 8275,
           "name" => "name 13",
-    "updated_at" => "2013-06-08T12:35:22Z"
+    "updated_at" => "2013-06-08T12:48:39Z"
   }
 ]
 ```
@@ -25,7 +25,7 @@ response:
 Returns the job
 
 ```
-GET /jobs/8258
+GET /jobs/8276
 ```
 
 ### response
@@ -34,10 +34,10 @@ Status: 200
 response: 
 {
       "config" => {},
-  "created_at" => "2013-06-08T12:35:22Z",
-          "id" => 8258,
+  "created_at" => "2013-06-08T12:48:39Z",
+          "id" => 8276,
         "name" => "name 14",
-  "updated_at" => "2013-06-08T12:35:22Z"
+  "updated_at" => "2013-06-08T12:48:39Z"
 }
 ```
 
@@ -51,20 +51,20 @@ POST /jobs
 
 ### parameters
 * `name` string (required)
-* `config` string
+* `config` hash
 
 
 ### response
 ```
 Status: 201
-location: http://www.example.com/jobs/8259
+location: http://www.example.com/jobs/8277
 response: 
 {
       "config" => {},
-  "created_at" => "2013-06-08T12:35:22Z",
-          "id" => 8259,
+  "created_at" => "2013-06-08T12:48:39Z",
+          "id" => 8277,
         "name" => "name",
-  "updated_at" => "2013-06-08T12:35:22Z"
+  "updated_at" => "2013-06-08T12:48:39Z"
 }
 ```
 
@@ -73,12 +73,12 @@ response:
 Updates the job
 
 ```
-PUT /jobs/8261
+PUT /jobs/8279
 ```
 
 ### parameters
 * `name` string
-* `config` string
+* `config` hash
 
 
 ### response
