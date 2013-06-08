@@ -35,12 +35,12 @@ describe "Jobs" do
 
   describe "POST /jobs" do
     before do
-      params[:job] = { name: "name" }
+      params[:name] = "name"
     end
 
     context "with invalid params" do
       before do
-        params.delete(:job)
+        params.delete(:name)
       end
 
       it "returns 400" do
@@ -60,12 +60,12 @@ describe "Jobs" do
 
   describe "PUT /jobs/:id" do
     before do
-      params[:job] = { name: "name" }
+      params[:name] = "name"
     end
 
     context "with invalid params" do
       before do
-        params.delete(:job)
+        params[:config] = "invalid"
       end
 
       it "returns 400" do

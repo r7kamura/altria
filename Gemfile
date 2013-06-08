@@ -7,6 +7,7 @@ gem "jquery-rails"
 gem "quiet_assets"
 gem "resque"
 gem "slim"
+gem "weak_parameters"
 
 group :development, :test do
   gem "pry-rails"

@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   respond_to :html, :json
 
+  rescue_from WeakParameters::ValidationError do
+    head 400
+  end
+
   private
 
   def require_resource_params

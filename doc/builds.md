@@ -2,7 +2,7 @@
 Returns builds of the job
 
 ```
-GET /jobs/2078/builds
+GET /jobs/8252/builds
 ```
 
 ### response
@@ -11,14 +11,14 @@ Status: 200
 response: 
 [
   {
-     "created_at" => "2013-06-08T06:49:59Z",
+     "created_at" => "2013-06-08T12:35:21Z",
     "finished_at" => nil,
-             "id" => 808,
-         "job_id" => 2078,
+             "id" => 3219,
+         "job_id" => 8252,
          "output" => nil,
      "started_at" => nil,
          "status" => nil,
-     "updated_at" => "2013-06-08T06:49:59Z"
+     "updated_at" => "2013-06-08T12:35:21Z"
   }
 ]
 ```
@@ -28,7 +28,7 @@ response:
 Returns the build
 
 ```
-GET /jobs/2079/builds/809
+GET /jobs/8253/builds/3220
 ```
 
 ### response
@@ -36,14 +36,14 @@ GET /jobs/2079/builds/809
 Status: 200
 response: 
 {
-   "created_at" => "2013-06-08T06:49:59Z",
+   "created_at" => "2013-06-08T12:35:21Z",
   "finished_at" => nil,
-           "id" => 809,
-       "job_id" => 2079,
+           "id" => 3220,
+       "job_id" => 8253,
        "output" => nil,
    "started_at" => nil,
        "status" => nil,
-   "updated_at" => "2013-06-08T06:49:59Z"
+   "updated_at" => "2013-06-08T12:35:21Z"
 }
 ```
 
@@ -52,23 +52,23 @@ response:
 Creates a new build and queue it
 
 ```
-POST /jobs/2080/builds
+POST /jobs/8254/builds
 ```
 
 ### response
 ```
 Status: 201
-location: http://www.example.com/jobs/2080/builds/810
+location: http://www.example.com/jobs/8254/builds/3221
 response: 
 {
-   "created_at" => "2013-06-08T06:50:00Z",
+   "created_at" => "2013-06-08T12:35:22Z",
   "finished_at" => nil,
-           "id" => 810,
-       "job_id" => 2080,
+           "id" => 3221,
+       "job_id" => 8254,
        "output" => nil,
    "started_at" => nil,
        "status" => nil,
-   "updated_at" => "2013-06-08T06:50:00Z"
+   "updated_at" => "2013-06-08T12:35:22Z"
 }
 ```
 
@@ -77,8 +77,12 @@ response:
 Updates the build
 
 ```
-PUT /jobs/2081/builds/811
+PUT /jobs/8255/builds/3222
 ```
+
+### parameters
+* `status` string
+
 
 ### response
 ```
@@ -91,7 +95,7 @@ response:
 Deletes the build
 
 ```
-DELETE /jobs/2082/builds/812
+DELETE /jobs/8256/builds/3223
 ```
 
 ### response

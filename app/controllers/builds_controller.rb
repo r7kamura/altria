@@ -2,7 +2,10 @@ class BuildsController < ApplicationController
   before_filter :require_job
   before_filter :require_resources, only: :index
   before_filter :require_resource, only: [:show, :update, :destroy]
-  before_filter :require_resource_params, only: :update
+
+  validates :update do
+    integer :status
+  end
 
   def index
     respond_with @resources
@@ -18,7 +21,7 @@ class BuildsController < ApplicationController
   end
 
   def update
-    respond_with @resource.update_attributes(resource_params.slice(:status))
+    respond_with @resource.update_attributes(params.slice(:status))
   end
 
   def destroy

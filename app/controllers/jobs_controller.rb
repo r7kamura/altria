@@ -1,7 +1,16 @@
 class JobsController < ApplicationController
-  before_filter :require_resource_params, only: [:create, :update]
   before_filter :require_resources, only: :index
   before_filter :require_resource, only: [:show, :edit, :update, :destroy]
+
+  validates :create do
+    string :name, required: true
+    hash :config
+  end
+
+  validates :update do
+    string :name
+    hash :config
+  end
 
   def index
     respond_with @resources
@@ -16,11 +25,11 @@ class JobsController < ApplicationController
   end
 
   def create
-    respond_with @resource = scope.create_with_properties(resource_params)
+    respond_with @resource = scope.create_with_properties(params.slice(:config, :name))
   end
 
   def update
-    respond_with @resource.update_attributes_with_properties(resource_params)
+    respond_with @resource.update_attributes_with_properties(params.slice(:config, :name))
   end
 
   def destroy

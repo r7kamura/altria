@@ -28,3 +28,6 @@ Magi is just a rails application with some middlewares.
 * plugin system
 * git integration
 * command-line options
+
+## API
+[API documents](https://github.com/r7kamura/magi/blob/master/doc)

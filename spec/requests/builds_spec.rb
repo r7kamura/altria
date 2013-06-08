@@ -48,7 +48,7 @@ describe "Builds" do
 
   describe "PUT /jobs/:job_id/builds/:id" do
     before do
-      params[:build] = { status: true }
+      params[:status] = 1
     end
 
     it "updates the build", :autodoc do
