@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608153135) do
+ActiveRecord::Schema.define(:version => 20130608153655) do
 
   create_table "builds", :force => true do |t|
     t.boolean  "status"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130608153135) do
     t.text     "output"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.text     "properties"
   end
 
   add_index "builds", ["job_id"], :name => "index_builds_on_job_id"

@@ -1,4 +1,6 @@
 class Job < ActiveRecord::Base
+  extend Magi::Proprietary
+
   attr_accessible :name, :properties
 
   serialize :properties, Hash
@@ -20,22 +22,6 @@ class Job < ActiveRecord::Base
 
     def queue
       select(&:scheduled?).each(&:queue)
-    end
-
-    def property(name)
-      properties << name
-
-      define_method(name) do
-        properties[name.to_s]
-      end
-
-      define_method("#{name}=") do |value|
-        properties[name.to_s] = value
-      end
-    end
-
-    def properties
-      @properties ||= []
     end
   end
 
