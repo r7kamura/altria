@@ -52,8 +52,7 @@ class Job < ActiveRecord::Base
   end
 
   def update_attributes_with_properties(params)
-    self.name = params[:name]
-    self.class.properties.each {|key| send("#{key}=", params[key]) }
+    (self.class.properties + [:name]).each {|key| send("#{key}=", params[key]) }
     tap(&:save)
   end
 
