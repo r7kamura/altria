@@ -36,6 +36,7 @@ describe "Jobs" do
   describe "POST /jobs" do
     before do
       params[:name] = "name"
+      params[:description] = "description"
     end
 
     context "with invalid params" do
@@ -53,7 +54,9 @@ describe "Jobs" do
       it "creates a new job", :autodoc do
         post "/jobs", params, env
         response.status.should == 201
-        Job.should have(1).job
+        job = Job.first
+        job.name.should == "name"
+        job.description.should == "description"
       end
     end
   end
@@ -61,24 +64,16 @@ describe "Jobs" do
   describe "PUT /jobs/:id" do
     before do
       params[:name] = "name"
-    end
-
-    context "with invalid params" do
-      before do
-        params[:config] = "invalid"
-      end
-
-      it "returns 400" do
-        put "/jobs/#{job.id}", params, env
-        response.status.should == 400
-      end
+      params[:description] = "description"
     end
 
     context "with valid condition" do
       it "updates the job", :autodoc do
         put "/jobs/#{job.id}", params, env
         response.status.should == 204
-        job.reload.name.should == "name"
+        job.reload
+        job.name.should == "name"
+        job.description.should == "description"
       end
     end
   end

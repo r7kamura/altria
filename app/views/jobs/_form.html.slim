@@ -1,7 +1,7 @@
 section.job_settings
   h1 Settings
 
-  = form_for resource do |f|
+  = form_for resource, as: "" do |f|
     .field
       p= f.label :name
       p= f.text_field :name, placeholder: "required"

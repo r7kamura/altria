@@ -14,10 +14,8 @@ class Job < ActiveRecord::Base
   delegate :status, :status_name, :status_icon_css_class, to: :last_finished_build, allow_nil: true
 
   class << self
-    def create_with_properties(properties)
-      job = new
-      properties.each {|key, value| job.send("#{key}=", value) }
-      job.tap(&:save)
+    def create_with_properties(params)
+      new.update_attributes_with_properties(params)
     end
 
     def queue
@@ -55,8 +53,9 @@ class Job < ActiveRecord::Base
     builds.finished.order(:finished_at).last
   end
 
-  def update_attributes_with_properties(properties)
-    properties.each {|key, value| send("#{key}=", value) }
+  def update_attributes_with_properties(params)
+    self.name = params[:name]
+    self.class.properties.each {|key| send("#{key}=", params[key]) }
     tap(&:save)
   end
 

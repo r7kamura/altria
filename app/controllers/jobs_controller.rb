@@ -4,12 +4,10 @@ class JobsController < ApplicationController
 
   validates :create do
     string :name, required: true
-    hash :config
   end
 
   validates :update do
     string :name
-    hash :config
   end
 
   def index
@@ -25,11 +23,11 @@ class JobsController < ApplicationController
   end
 
   def create
-    respond_with @resource = scope.create_with_properties(params.slice(:config, :name))
+    respond_with @resource = scope.create_with_properties(params)
   end
 
   def update
-    respond_with @resource.update_attributes_with_properties(params.slice(:config, :name))
+    respond_with @resource.update_attributes_with_properties(params)
   end
 
   def destroy
