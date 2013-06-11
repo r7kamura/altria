@@ -2,7 +2,7 @@
 Returns builds of the job
 
 ```
-GET /jobs/8270/builds
+GET /jobs/1072/builds
 ```
 
 ### response
@@ -11,14 +11,15 @@ Status: 200
 response: 
 [
   {
-     "created_at" => "2013-06-08T12:48:39Z",
+     "created_at" => "2013-06-11T17:48:09Z",
     "finished_at" => nil,
-             "id" => 3226,
-         "job_id" => 8270,
+             "id" => 395,
+         "job_id" => 1072,
          "output" => nil,
+     "properties" => {},
      "started_at" => nil,
          "status" => nil,
-     "updated_at" => "2013-06-08T12:48:39Z"
+     "updated_at" => "2013-06-11T17:48:09Z"
   }
 ]
 ```
@@ -28,7 +29,7 @@ response:
 Returns the build
 
 ```
-GET /jobs/8271/builds/3227
+GET /jobs/1073/builds/396
 ```
 
 ### response
@@ -36,14 +37,15 @@ GET /jobs/8271/builds/3227
 Status: 200
 response: 
 {
-   "created_at" => "2013-06-08T12:48:39Z",
+   "created_at" => "2013-06-11T17:48:09Z",
   "finished_at" => nil,
-           "id" => 3227,
-       "job_id" => 8271,
+           "id" => 396,
+       "job_id" => 1073,
        "output" => nil,
+   "properties" => {},
    "started_at" => nil,
        "status" => nil,
-   "updated_at" => "2013-06-08T12:48:39Z"
+   "updated_at" => "2013-06-11T17:48:09Z"
 }
 ```
 
@@ -52,23 +54,24 @@ response:
 Creates a new build and queue it
 
 ```
-POST /jobs/8272/builds
+POST /jobs/1074/builds
 ```
 
 ### response
 ```
 Status: 201
-location: http://www.example.com/jobs/8272/builds/3228
+location: http://www.example.com/jobs/1074/builds/397
 response: 
 {
-   "created_at" => "2013-06-08T12:48:39Z",
+   "created_at" => "2013-06-11T17:48:09Z",
   "finished_at" => nil,
-           "id" => 3228,
-       "job_id" => 8272,
+           "id" => 397,
+       "job_id" => 1074,
        "output" => nil,
+   "properties" => {},
    "started_at" => nil,
        "status" => nil,
-   "updated_at" => "2013-06-08T12:48:39Z"
+   "updated_at" => "2013-06-11T17:48:09Z"
 }
 ```
 
@@ -77,7 +80,7 @@ response:
 Updates the build
 
 ```
-PUT /jobs/8273/builds/3229
+PUT /jobs/1075/builds/398
 ```
 
 ### parameters
@@ -95,7 +98,7 @@ response:
 Deletes the build
 
 ```
-DELETE /jobs/8274/builds/3230
+DELETE /jobs/1076/builds/399
 ```
 
 ### response
