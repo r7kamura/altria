@@ -13,8 +13,21 @@ module Magi
     end
 
     def execute
-      output, status = Open3.capture2e(script)
       { output: output, status: status.success? }
+    end
+
+    private
+
+    def output
+      result[0]
+    end
+
+    def status
+      result[1]
+    end
+
+    def result
+      @result ||= Open3.capture2e(script)
     end
   end
 end
