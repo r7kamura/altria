@@ -13,13 +13,15 @@ class Job < ActiveRecord::Base
 
   delegate :status, :status_name, :status_icon_css_class, to: :last_finished_build, allow_nil: true
 
+  delegate :scheduled?, to: :scheduler, allow_nil: true
+
   class << self
     def create_with_properties(params)
       new.update_attributes_with_properties(params)
     end
 
-    def queue
-      select(&:scheduled?).each(&:queue)
+    def enqueue
+      select(&:scheduled?).each(&:enqueue)
     end
   end
 
@@ -34,15 +36,11 @@ class Job < ActiveRecord::Base
   end
 
   def scheduler
-    Magi::Scheduler.new(schedule)
+    Magi::Scheduler.new(schedule) if schedule
   end
 
-  def scheduled?
-    schedule && scheduler.scheduled?
-  end
-
-  def queue
-    builds.create.tap(&:queue)
+  def enqueue
+    builds.create.tap(&:enqueue)
   end
 
   def status_name

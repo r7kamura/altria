@@ -14,7 +14,7 @@ class Build < ActiveRecord::Base
   scope :finished, -> { where("finished_at IS NOT NULL") }
 
   # Pushes this build to worker's queue.
-  def queue
+  def enqueue
     BuildWorker.perform_async(id)
   end
 

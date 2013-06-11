@@ -16,7 +16,7 @@ class BuildsController < ApplicationController
   end
 
   def create
-    resource = @job.queue
+    resource = @job.enqueue
     respond_with resource, location: [@job, resource]
   end
 
