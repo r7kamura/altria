@@ -20,8 +20,24 @@ class Job < ActiveRecord::Base
       new.update_attributes_with_properties(params)
     end
 
-    def enqueue
-      select(&:scheduled?).each(&:enqueue)
+    def enqueue_with_before_hooks
+      select(&:scheduled?).each(&:enqueue_with_before_hooks)
+    end
+
+    def before_hook(&block)
+      before_hooks << block
+    end
+
+    def before_hooks
+      @before_hooks ||= []
+    end
+
+    def after_hook(&block)
+      after_hooks << block
+    end
+
+    def after_hooks
+      @after_hooks ||= []
     end
   end
 
@@ -43,8 +59,16 @@ class Job < ActiveRecord::Base
     builds.create.tap(&:enqueue)
   end
 
+  def enqueue_with_before_hooks
+    enqueue if execute_before_hooks
+  end
+
   def status_name
     last_finished_build.try(:status_name) || "unfinished"
+  end
+
+  def current_build
+    builds.running.latest
   end
 
   def last_finished_build
@@ -52,7 +76,9 @@ class Job < ActiveRecord::Base
   end
 
   def update_attributes_with_properties(params)
-    (self.class.properties + [:name]).each {|key| send("#{key}=", params[key]) }
+    params.slice(:name, *self.class.properties).each do |key, value|
+      send("#{key}=", value)
+    end
     tap(&:save)
   end
 
@@ -60,6 +86,19 @@ class Job < ActiveRecord::Base
 
   def execute
     Magi::Executer.execute(script)
+  end
+
+  def execute_with_after_hooks
+    execute_without_after_hooks.tap { execute_after_hooks }
+  end
+  alias_method_chain :execute, :after_hooks
+
+  def execute_before_hooks
+    self.class.before_hooks.all? {|hook| instance_exec(&hook) != false }
+  end
+
+  def execute_after_hooks
+    self.class.after_hooks.all? {|hook| instance_exec(&hook) != false }
   end
 
   def raise_script_not_found

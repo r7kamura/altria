@@ -3,7 +3,7 @@ class Build < ActiveRecord::Base
 
   attr_accessible :finished_at, :started_at, :output, :properties, :status
 
-  serialize :properties
+  serialize :properties, Hash
 
   validates :job_id, presence: true
 
@@ -12,6 +12,16 @@ class Build < ActiveRecord::Base
   scope :recent, -> { order("created_at DESC") }
 
   scope :finished, -> { where("finished_at IS NOT NULL") }
+
+  scope :unfinished, -> { where("finished_at IS NULL") }
+
+  scope :started, -> { where("started_at IS NOT NULL") }
+
+  scope :running, -> { started.unfinished }
+
+  def self.latest
+    recent.first
+  end
 
   # Pushes this build to worker's queue.
   def enqueue
@@ -22,7 +32,7 @@ class Build < ActiveRecord::Base
   def start
     update_attributes!(started_at: Time.now)
     result = job.start
-    update_attributes!(finished_at: Time.now, status: result[:status], output: result[:output])
+    reload.update_attributes!(finished_at: Time.now, status: result[:status], output: result[:output])
   end
 
   # Returns elapsed sec as a Float or nil.

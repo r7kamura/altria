@@ -51,4 +51,39 @@ describe Job do
       end
     end
   end
+
+  describe "#enqueue_with_before_hooks" do
+    before do
+      Job.before_hooks.clear
+    end
+
+    after do
+      Job.before_hooks.clear
+    end
+
+    context "with successful hooks" do
+      before do
+        Job.before_hook { Job.hook_is_executed }
+      end
+
+      it "enqueues a new build" do
+        Job.should_receive(:hook_is_executed)
+        job.should_receive(:enqueue)
+        job.enqueue_with_before_hooks
+      end
+    end
+
+    context "with failed hooks" do
+      before do
+        Job.before_hook { false }
+        Job.before_hook { Job.hook_is_executed }
+      end
+
+      it "stops at failed hook" do
+        Job.should_not_receive(:hook_is_executed)
+        job.should_not_receive(:enqueue)
+        job.enqueue_with_before_hooks
+      end
+    end
+  end
 end
