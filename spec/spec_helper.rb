@@ -24,6 +24,14 @@ RSpec.configure do |config|
 
   config.include RSpec::JsonMatcher, type: :request
   config.include ResponseCodeMatchers, type: :request
+
+  config.before(:suite) do
+    Magi.configuration.workspace_path = Rails.root.join("tmp/workspace")
+  end
+
+  config.after(:suite) do
+    Rails.root.join("tmp/workspace").rmtree
+  end
 end
 
 Resque.inline = true
