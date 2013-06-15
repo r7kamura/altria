@@ -57,6 +57,19 @@ end
 Job.class_eval do
   property(:git_url)
 
+  before_hook do
+    if git_url.present?
+      repository.update
+      repository.updated?
+    end
+  end
+
+  after_hook do
+    if git_url.present?
+      current_build.update_revision
+    end
+  end
+
   def repository
     @repository ||= Magi::Repository.new(self)
   end
@@ -66,20 +79,6 @@ Build.class_eval do
   property(:revision)
 
   def update_revision
-    self.revision = job.repository.revision
-    save
-  end
-end
-
-Job.before_hook do
-  if git_url.present?
-    repository.update
-    repository.updated?
-  end
-end
-
-Job.after_hook do
-  if git_url.present?
-    current_build.update_revision
+    update_attributes(revision: job.repository.revision)
   end
 end

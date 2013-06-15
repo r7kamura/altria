@@ -15,5 +15,12 @@ module Magi
     def properties
       @properties ||= []
     end
+
+    def update_properties(properties)
+      properties.each do |key, value|
+        send("#{key}=", value)
+      end
+      save
+    end
   end
 end
