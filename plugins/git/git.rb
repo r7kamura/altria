@@ -21,7 +21,7 @@ module Magi
       command("cd #{job.workspace.path} && git rev-parse HEAD").rstrip
     end
 
-    def updated?
+    def updated_since_last_finished_build?
       revision != job.last_finished_build.try(:revision)
     end
 
@@ -54,7 +54,7 @@ Job.class_eval do
     if git_url.present?
       repository.clone unless repository.cloned?
       repository.update
-      repository.updated?
+      repository.updated_since_last_finished_build?
     end
   end
 
