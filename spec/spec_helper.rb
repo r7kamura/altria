@@ -30,7 +30,8 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
-    Rails.root.join("tmp/workspace").rmtree
+    workspace = Rails.root.join("tmp/workspace")
+    workspace.rmtree if workspace.exist?
   end
 end
 
