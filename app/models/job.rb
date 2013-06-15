@@ -115,7 +115,7 @@ class Job < ActiveRecord::Base
   private
 
   def workspace_path
-    Magi.workspace.path + "jobs/#{id}"
+    Magi.configuration.workspace_path + "jobs/#{id}"
   end
 
   def execute
