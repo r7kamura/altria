@@ -68,7 +68,7 @@ class Job < ActiveRecord::Base
   end
 
   def scheduler
-    Magi::Scheduler.new(schedule) if schedule
+    Magi::Scheduler.new(schedule) if schedule.present?
   end
 
   def enqueue

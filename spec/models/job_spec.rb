@@ -35,6 +35,16 @@ describe Job do
       end
     end
 
+    context "with empty schedule" do
+      before do
+        job.schedule = ""
+      end
+
+      it "returns false" do
+        job.should_not be_scheduled
+      end
+    end
+
     context "with matched schedule" do
       before do
         job.schedule = "* * * * *"
