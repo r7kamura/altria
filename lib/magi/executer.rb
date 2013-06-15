@@ -27,11 +27,7 @@ module Magi
     end
 
     def result
-      @result ||= invoke
-    end
-
-    def invoke
-      Magi.workspace.chdir { Open3.capture2e(script) }
+      @result ||= Open3.capture2e(script)
     end
   end
 end

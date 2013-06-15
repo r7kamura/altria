@@ -2,30 +2,23 @@ require "open3"
 
 module Magi
   class Repository
-    delegate :exist?, to: :directory
-
     attr_reader :job
 
     def initialize(job)
       @job = job
     end
 
-    def directory
-      @directory ||= Pathname.new("jobs/#{job.id}")
-    end
-
     def clone
       validate_existence_of_git_url
-      command("git clone #{job.git_url} #{directory}")
+      command("git clone #{job.git_url} #{job.workspace.path}")
     end
 
     def update
-      clone unless exist?
-      command("cd #{directory} && git pull")
+      command("cd #{job.workspace.path} && git pull")
     end
 
     def revision
-      command("cd #{directory} && git rev-parse HEAD").rstrip
+      command("cd #{job.workspace.path} && git rev-parse HEAD").rstrip
     end
 
     def updated?
@@ -35,11 +28,7 @@ module Magi
     private
 
     def command(script)
-      Open3.capture3(script)[0]
-    end
-
-    def mkdir
-      directory.parent.mkpath
+      Magi.workspace.chdir { Open3.capture3(script)[0] }
     end
 
     def validate_existence_of_git_url

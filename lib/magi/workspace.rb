@@ -7,7 +7,20 @@ module Magi
     end
 
     def chdir
+      mkpath_unless_exist
       Dir.chdir(path) { yield }
+    end
+
+    def mkpath_unless_exist
+       mkpath unless exist?
+    end
+
+    def mkpath
+      path.mkpath
+    end
+
+    def exist?
+      path.exist?
     end
   end
 end

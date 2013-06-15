@@ -82,10 +82,18 @@ class Job < ActiveRecord::Base
     tap(&:save)
   end
 
+  def workspace
+    @workspace ||= Magi::Workspace.new(workspace_path)
+  end
+
   private
 
+  def workspace_path
+    Magi.workspace.path + "jobs/#{id}"
+  end
+
   def execute
-    Magi::Executer.execute(script)
+    workspace.chdir { Magi::Executer.execute(script) }
   end
 
   def execute_with_after_hooks
