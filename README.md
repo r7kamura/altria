@@ -25,8 +25,6 @@ Magi is just a rails application with some middlewares.
 
 ## Todo
 * async update by ajax
-* plugin system
-* git integration
 * command-line options
 
 ## API
