@@ -20,24 +20,40 @@ class Job < ActiveRecord::Base
       new.update_attributes_with_properties(params)
     end
 
-    def enqueue_with_before_hooks
-      select(&:scheduled?).each(&:enqueue_with_before_hooks)
+    def scheduled
+      select(&:scheduled?)
     end
 
-    def before_hook(&block)
-      before_hooks << block
+    def before_enqueue(&block)
+      before_enqueues << block
     end
 
-    def before_hooks
-      @before_hooks ||= []
+    def before_enqueues
+      @before_enqueues ||= []
     end
 
-    def after_hook(&block)
-      after_hooks << block
+    def after_enqueue(&block)
+      after_enqueues << block
     end
 
-    def after_hooks
-      @after_hooks ||= []
+    def after_enqueues
+      @after_enqueues ||= []
+    end
+
+    def before_execute(&block)
+      before_executes << block
+    end
+
+    def before_executes
+      @before_executes ||= []
+    end
+
+    def after_execute(&block)
+      after_executes << block
+    end
+
+    def after_executes
+      @after_executes ||= []
     end
   end
 
@@ -59,9 +75,19 @@ class Job < ActiveRecord::Base
     builds.create.tap(&:enqueue)
   end
 
-  def enqueue_with_before_hooks
-    enqueue if execute_before_hooks
+  def enqueue_with_before_enqueues
+    if self.class.before_enqueues.all? {|hook| instance_exec(&hook) != false }
+      enqueue_without_before_enqueues
+    end
   end
+  alias_method_chain :enqueue, :before_enqueues
+
+  def enqueue_with_after_enqueues
+    enqueue_without_after_enqueues.tap do
+      self.class.after_enqueues.all? {|hook| instance_exec(&hook) != false }
+    end
+  end
+  alias_method_chain :enqueue, :after_enqueues
 
   def status_name
     last_finished_build.try(:status_name) || "unfinished"
@@ -96,18 +122,18 @@ class Job < ActiveRecord::Base
     workspace.chdir { Magi::Executer.execute(script) }
   end
 
-  def execute_with_after_hooks
-    execute_without_after_hooks.tap { execute_after_hooks }
+  def execute_with_before_executes
+    self.class.before_executes.all? {|hook| instance_exec(&hook) != false }
+    execute_without_before_executes
   end
-  alias_method_chain :execute, :after_hooks
+  alias_method_chain :execute, :before_executes
 
-  def execute_before_hooks
-    self.class.before_hooks.all? {|hook| instance_exec(&hook) != false }
+  def execute_with_after_executes
+    execute_without_after_executes.tap do
+      self.class.after_executes.all? {|hook| instance_exec(&hook) != false }
+    end
   end
-
-  def execute_after_hooks
-    self.class.after_hooks.all? {|hook| instance_exec(&hook) != false }
-  end
+  alias_method_chain :execute, :after_executes
 
   def raise_script_not_found
     raise ScriptNotFound, 'You must set properties["script"]'

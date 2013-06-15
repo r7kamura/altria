@@ -2,11 +2,15 @@ require "spec_helper"
 
 describe Job do
   let(:job) do
-    FactoryGirl.create(:job)
+    FactoryGirl.create(:job, properties: { "script" => "true" })
   end
 
   describe "#start" do
     context "without script" do
+      before do
+        job.script = nil
+      end
+
       it "raises Job::ScriptNotFound" do
         expect { job.start }.to raise_error(Job::ScriptNotFound)
       end
@@ -52,37 +56,35 @@ describe Job do
     end
   end
 
-  describe "#enqueue_with_before_hooks" do
+  describe "#enqueue" do
     before do
-      Job.before_hooks.clear
+      Job.before_enqueues.clear
     end
 
     after do
-      Job.before_hooks.clear
+      Job.before_enqueues.clear
     end
 
     context "with successful hooks" do
       before do
-        Job.before_hook { Job.hook_is_executed }
+        Job.before_enqueue { Job.hook_is_executed }
       end
 
       it "enqueues a new build" do
         Job.should_receive(:hook_is_executed)
-        job.should_receive(:enqueue)
-        job.enqueue_with_before_hooks
+        job.enqueue
       end
     end
 
     context "with failed hooks" do
       before do
-        Job.before_hook { false }
-        Job.before_hook { Job.hook_is_executed }
+        Job.before_enqueue { false }
+        Job.before_enqueue { Job.hook_is_executed }
       end
 
       it "stops at failed hook" do
         Job.should_not_receive(:hook_is_executed)
-        job.should_not_receive(:enqueue)
-        job.enqueue_with_before_hooks
+        job.enqueue
       end
     end
   end

@@ -3,7 +3,7 @@ class JobEnqueueWorker
 
   class << self
     def perform(id)
-      Job.find(id).enqueue_with_before_hooks
+      Job.find(id).enqueue
     end
 
     def perform_async(id)

@@ -25,10 +25,14 @@ module Magi
       revision != job.last_finished_build.try(:revision)
     end
 
+    def cloned?
+      job.workspace.path.join(".git").exist?
+    end
+
     private
 
     def command(script)
-      Magi.workspace.chdir { Open3.capture3(script)[0] }
+      Open3.capture3(script)[0]
     end
 
     def validate_existence_of_git_url
@@ -46,14 +50,21 @@ end
 Job.class_eval do
   property(:git_url)
 
-  before_hook do
+  before_enqueue do
     if git_url.present?
+      repository.clone unless repository.cloned?
       repository.update
       repository.updated?
     end
   end
 
-  after_hook do
+  before_execute do
+    if git_url.present?
+      repository.clone unless repository.cloned?
+    end
+  end
+
+  after_execute do
     if git_url.present?
       current_build.update_revision
     end
