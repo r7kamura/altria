@@ -8,7 +8,7 @@
 #   # Invokes "setup" command to set up your database.
 #   Magi::Command.call(["setup"])
 #
-#   # Invokes "start" command to start redis, rails, and sidekiq processes.
+#   # Invokes "start" command to start the processes.
 #   Magi::Command.call(["start"])
 #
 module Magi
