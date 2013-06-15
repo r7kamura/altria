@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/r7kamura/magi"
   spec.license       = "MIT"
 
-  spec.files         = Dir["{app,bin,config,db,lib,public,script,spec}/**/*"]
+  spec.files         = Dir["{app,bin,config,db,lib,plugins,public,script,spec}/**/*"]
   spec.files         += %w[
                           Gemfile
                           LICENSE.txt
