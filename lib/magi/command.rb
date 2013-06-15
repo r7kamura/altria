@@ -43,11 +43,19 @@ module Magi
     end
 
     def start
-      system("cd #{root_path} && foreman start")
+      system(env, "cd #{root_path} && foreman start")
     end
 
     def root_path
       File.expand_path("../../..", __FILE__)
+    end
+
+    def workspace_path
+      Dir.pwd
+    end
+
+    def env
+      { "WORKSPACE_PATH" => workspace_path }
     end
   end
 end
