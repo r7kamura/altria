@@ -19,6 +19,8 @@ class Build < ActiveRecord::Base
 
   scope :running, -> { started.unfinished }
 
+  paginates_per 10
+
   def self.latest
     recent.first
   end

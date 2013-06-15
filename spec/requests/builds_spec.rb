@@ -27,6 +27,19 @@ describe "Builds" do
       response.status.should == 200
       response.body.should be_json([Hash])
     end
+
+    context "with page" do
+      before do
+        params[:page] = 2
+        10.times { job.builds.create }
+      end
+
+      it "paginates builds" do
+        get "/jobs/#{job.id}/builds", params, env
+        response.status.should == 200
+        response.body.should be_json([Hash])
+      end
+    end
   end
 
   describe "GET /jobs/:job_id/builds/:id" do

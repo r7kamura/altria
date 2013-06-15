@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
     head 400
   end
 
+  self.responder = Magi::Responder
+
   private
 
   def require_resource_params

@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "font-awesome-rails"
   spec.add_dependency "foreman"
   spec.add_dependency "jquery-rails"
+  spec.add_dependency "kaminari"
   spec.add_dependency "mysql2"
   spec.add_dependency "quiet_assets"
   spec.add_dependency "rails", "3.2.13"

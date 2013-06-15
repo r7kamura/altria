@@ -6,6 +6,7 @@ gemspec
 
 gem "font-awesome-rails"
 gem "jquery-rails"
+gem "kaminari"
 gem "quiet_assets"
 gem "resque"
 gem "slim"

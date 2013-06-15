@@ -1,6 +1,7 @@
 require "magi/command"
 require "magi/configuration"
 require "magi/plugin_manager"
+require "magi/responder"
 require "magi/version"
 require "magi/workspace"
 

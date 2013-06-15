@@ -17,8 +17,10 @@ section.builds
     = link_to "Delete", @resource, method: "DELETE", confirm: "Are you sure?", class: "button delete"
 
   ul
-    - @resource.builds.recent.limit(10).each do |build|
+    - @resource.builds.page(params[:page]).recent.limit(10).each do |build|
       li class = build.status_name
         = link_to [@resource, build] do
           span.id ##{build.id}
           span= build.finished_at
+
+  = paginate @resource.builds.page(params[:page])
