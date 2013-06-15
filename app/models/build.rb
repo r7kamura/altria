@@ -1,5 +1,5 @@
 class Build < ActiveRecord::Base
-  extend Magi::Proprietary
+  include Magi::Proprietary
 
   attr_accessible :finished_at, :started_at, :output, :properties, :status
 

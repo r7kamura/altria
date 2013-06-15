@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  extend Magi::Proprietary
+  include Magi::Proprietary
 
   attr_accessible :name, :properties
 

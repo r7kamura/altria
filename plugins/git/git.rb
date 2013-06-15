@@ -79,6 +79,6 @@ Build.class_eval do
   property(:revision)
 
   def update_revision
-    update_attributes(revision: job.repository.revision)
+    update_properties(revision: job.repository.revision)
   end
 end
