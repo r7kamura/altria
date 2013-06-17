@@ -37,7 +37,7 @@ class JobsController < ApplicationController
   private
 
   def scope
-    Job.scoped
+    Job.all
   end
 
   def require_resources

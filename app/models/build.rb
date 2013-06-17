@@ -1,8 +1,6 @@
 class Build < ActiveRecord::Base
   include Magi::Proprietary
 
-  attr_accessible :finished_at, :started_at, :output, :properties, :status
-
   serialize :properties, Hash
 
   validates :job_id, presence: true

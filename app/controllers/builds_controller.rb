@@ -21,7 +21,7 @@ class BuildsController < ApplicationController
   end
 
   def update
-    respond_with @resource.update_attributes(params.slice(:status))
+    respond_with @resource.update_attributes(params.permit(:status))
   end
 
   def destroy

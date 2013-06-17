@@ -1,8 +1,6 @@
 class Job < ActiveRecord::Base
   include Magi::Proprietary
 
-  attr_accessible :name, :properties
-
   serialize :properties, Hash
 
   validates :name, presence: true
