@@ -32,9 +32,8 @@ class Build < ActiveRecord::Base
 
   # Runs this build, usually called from BuildWorker#perform.
   def run
-    update_attributes!(started_at: Time.now)
-    result = job.run
-    reload.update_attributes!(finished_at: Time.now, status: result[:status], output: result[:output])
+    start
+    finish(job.run)
   end
 
   # Returns elapsed sec as a Float or nil.
@@ -51,5 +50,19 @@ class Build < ActiveRecord::Base
     when nil
       "unfinished"
     end
+  end
+
+  private
+
+  def start
+    update_attributes!(started_at: Time.now)
+  end
+
+  def finish(result)
+    reload.update_attributes!(
+      finished_at: Time.now,
+      output: result[:output],
+      status: result[:status],
+    )
   end
 end
