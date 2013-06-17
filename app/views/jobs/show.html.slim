@@ -14,7 +14,7 @@ section.builds
   .buttons
     = link_to "Run", [@resource, :builds], method: "POST", class: "button run"
     = link_to "Settings", [:edit, @resource], class: "button settings"
-    = link_to "Delete", @resource, method: "DELETE", confirm: "Are you sure?", class: "button delete"
+    = link_to "Delete", @resource, method: "DELETE", data: { confirm: "Are you sure?" }, class: "button delete"
 
   ul
     - @resource.builds.page(params[:page]).recent.limit(10).each do |build|
