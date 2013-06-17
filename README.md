@@ -1,31 +1,26 @@
 # Magi
 A continuous integration server implementation.
 
-![](http://dl.dropbox.com/u/5978869/image/20130607_012059.png)
-
-## Install
-```
-$ gem install magi
-$ brew install mysql redis # or other commands to install MySQL and Redis
-```
-
 ## Usage
 ```
-$ magi setup
-$ magi start # open http://localhost:3000
+$ gem install magi         # install magi.gem
+$ brew install mysql redis # install MySQL and Redis
+$ magi setup               # create mysql tables
+$ magi start               # launch server on http://localhost:3000
 ```
 
-## Hack
+## Development
 Magi is just a rails application with some middlewares.
 
-* clockwork: scheduler
+* rails4: notify build start/finish events via live streaming
+* clockwork: cron scheduler
 * foreman: process manager
 * mysql: store jobs & builds
 * resque: background worker using redis
+* autodoc: generate [RESTful API documents](https://github.com/r7kamura/magi/blob/master/doc) from request-specs
 
-## Todo
-* async update by ajax
-* command-line options
-
-## API
-[API documents](https://github.com/r7kamura/magi/blob/master/doc)
+### TODO
+* ajax updated view
+* build stop button
+* self-repairing system
+* plugin updater
