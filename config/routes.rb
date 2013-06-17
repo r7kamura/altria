@@ -4,4 +4,6 @@ Magi::Application.routes.draw do
   resources :jobs do
     resources :builds, only: [:index, :show, :create, :update, :destroy]
   end
+
+  resources :events, only: :index
 end

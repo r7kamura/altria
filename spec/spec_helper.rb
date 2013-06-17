@@ -33,6 +33,10 @@ RSpec.configure do |config|
     workspace = Rails.root.join("tmp/workspace")
     workspace.rmtree if workspace.exist?
   end
+
+  config.before do
+    $redis.stub(:publish)
+  end
 end
 
 Resque.inline = true

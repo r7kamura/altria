@@ -52,15 +52,17 @@ class Build < ActiveRecord::Base
 
   private
 
+  def notify(type)
+    $redis.publish("build.#{type}", { id: id }.to_json)
+  end
+
   def start
     update_attributes!(started_at: Time.now)
+    notify(:start)
   end
 
   def finish(result)
-    reload.update_attributes!(
-      finished_at: Time.now,
-      output: result[:output],
-      status: result[:status],
-    )
+    reload.update_attributes!(finished_at: Time.now, output: result[:output], status: result[:status])
+    notify(:finish)
   end
 end
