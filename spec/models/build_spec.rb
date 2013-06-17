@@ -9,10 +9,10 @@ describe Build do
     FactoryGirl.create(:job, properties: { "script" => "true" })
   end
 
-  describe "#start" do
+  describe "#run" do
     context "with success" do
-      it "starts its job and sets status with true" do
-        build.start
+      it "runs its job and sets status with true" do
+        build.run
         build.started_at.should be_present
         build.finished_at.should be_present
         build.status.should == true
@@ -24,8 +24,8 @@ describe Build do
         build.job.script = "false"
       end
 
-      it "starts its job and sets status with false" do
-        build.start
+      it "runs its job and sets status with false" do
+        build.run
         build.started_at.should be_present
         build.finished_at.should be_present
         build.status.should == false

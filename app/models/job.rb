@@ -63,7 +63,7 @@ class Job < ActiveRecord::Base
 
   property(:script)
 
-  def start
+  def run
     script ? execute : raise_script_not_found
   end
 

@@ -3,7 +3,7 @@ class BuildWorker
 
   class << self
     def perform(id)
-      Build.find(id).start
+      Build.find(id).run
     end
 
     def perform_async(id)

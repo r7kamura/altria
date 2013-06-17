@@ -31,9 +31,9 @@ class Build < ActiveRecord::Base
   end
 
   # Runs this build, usually called from BuildWorker#perform.
-  def start
+  def run
     update_attributes!(started_at: Time.now)
-    result = job.start
+    result = job.run
     reload.update_attributes!(finished_at: Time.now, status: result[:status], output: result[:output])
   end
 

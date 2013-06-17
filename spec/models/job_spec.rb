@@ -5,14 +5,14 @@ describe Job do
     FactoryGirl.create(:job, properties: { "script" => "true" })
   end
 
-  describe "#start" do
+  describe "#run" do
     context "without script" do
       before do
         job.script = nil
       end
 
       it "raises Job::ScriptNotFound" do
-        expect { job.start }.to raise_error(Job::ScriptNotFound)
+        expect { job.run }.to raise_error(Job::ScriptNotFound)
       end
     end
 
@@ -21,9 +21,9 @@ describe Job do
         job.script = "true"
       end
 
-      it "starts its job" do
+      it "runs its job" do
         Magi::Executer.should_receive(:execute).with("true")
-        job.start
+        job.run
       end
     end
   end
