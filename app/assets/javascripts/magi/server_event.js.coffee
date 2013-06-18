@@ -2,10 +2,6 @@ class window.Magi.ServerEvent
   constructor: ->
     @source = new EventSource('/events')
 
-  onBuildStart: (callback) ->
-    @source.addEventListener 'build.start', (event) ->
-      callback($.parseJSON(event.data))
-
-  onBuildFinish: (callback) ->
-    @source.addEventListener 'build.finish', (event) ->
+  on: (eventName, callback) ->
+    @source.addEventListener eventName, (event) ->
       callback($.parseJSON(event.data))
