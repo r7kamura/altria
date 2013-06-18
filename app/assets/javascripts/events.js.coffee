@@ -5,5 +5,5 @@ $ ->
     job.onChange -> view.render()
 
     event = new Magi.ServerEvent()
-    event.on 'build.start', (attributes) -> job.set(attributes)
-    event.on 'build.finish', (attributes) -> job.set(attributes)
+    event.on 'build.started', (attributes) -> job.set(attributes)
+    event.on 'build.finished', (attributes) -> job.set(attributes)

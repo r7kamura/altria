@@ -58,11 +58,11 @@ class Build < ActiveRecord::Base
 
   def start
     update_attributes!(started_at: Time.now)
-    notify(:start)
+    notify(:started)
   end
 
   def finish(result)
     reload.update_attributes!(finished_at: Time.now, output: result[:output], status: result[:status])
-    notify(:finish)
+    notify(:finished)
   end
 end
