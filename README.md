@@ -18,9 +18,9 @@ Magi is just a rails application with some middlewares.
 * mysql: store jobs & builds
 * resque: background worker using redis
 * autodoc: generate [RESTful API documents](https://github.com/r7kamura/magi/blob/master/doc) from request-specs
+* jquery: ajax updated view
 
 ### TODO
-* ajax updated view
 * build stop button
 * self-repairing system
 * plugin updater
