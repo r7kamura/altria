@@ -53,7 +53,7 @@ class Build < ActiveRecord::Base
   private
 
   def notify(type)
-    $redis.publish("build.#{type}", { id: id }.to_json)
+    $redis.publish("build.#{type}", { id: id, job_id: job.id, status: status_name }.to_json)
   end
 
   def start

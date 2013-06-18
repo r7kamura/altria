@@ -1,13 +1,9 @@
 $ ->
   $('.jobs_controller.index_action').each ->
-    source = new EventSource('/events')
+    job = new Magi.JobModel()
+    view = new Magi.JobView(job)
+    job.onChange -> view.render()
 
-    source.addEventListener 'build.start', (event) ->
-      data = $.parseJSON(event.data)
-      data.type = 'start'
-      console.log(data)
-
-    source.addEventListener 'build.finish', (event) ->
-      data = $.parseJSON(event.data)
-      data.type = 'finish'
-      console.log(data)
+    event = new Magi.ServerEvent()
+    event.onBuildStart (attributes) -> job.set(attributes)
+    event.onBuildFinish (attributes) -> job.set(attributes)

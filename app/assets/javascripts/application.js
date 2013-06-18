@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require magi
+//= require_tree ./magi
 //= require_tree .

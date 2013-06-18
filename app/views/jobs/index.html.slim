@@ -13,7 +13,7 @@ section.jobs
 
   ul
     - @resources.recent.each do |resource|
-      li class = resource.status_name
+      li class=resource.status_name id="job#{resource.id}"
         = link_to resource do
           span
             = resource.name
