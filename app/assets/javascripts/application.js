@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
+//= require backbone
+//
 //= require magi
 //= require_tree ./magi
 //= require_tree .

@@ -1,7 +1,7 @@
 class window.Magi.BuildView
   constructor: () ->
     @model = new Magi.Model()
-    @model.onChange => @render()
+    @model.on 'change', => @render()
 
   element: ->
     $("#build#{@model.attributes.id}")
