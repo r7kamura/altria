@@ -18,9 +18,9 @@ section.builds
 
   ul
     - @resource.builds.page(params[:page]).recent.limit(10).each do |build|
-      li class = build.status_name
+      li class=build.status_name id="build#{build.id}"
         = link_to [@resource, build] do
           span.id ##{build.id}
-          span= build.finished_at
+          span.time= build.finished_at
 
   = paginate @resource.builds.page(params[:page])

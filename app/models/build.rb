@@ -57,7 +57,7 @@ class Build < ActiveRecord::Base
   end
 
   def notified_data
-    { id: id, job_id: job.id, status: status_name }.to_json
+    { id: id, job_id: job.id, status: status_name, finished_at: finished_at }.to_json
   end
 
   def start
