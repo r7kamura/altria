@@ -1,5 +1,5 @@
 # Magi
-A continuous integration server implementation.
+Casual CI server system (magi is a temporal name).
 
 ## Usage
 ```
