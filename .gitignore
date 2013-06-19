@@ -16,3 +16,4 @@ test/version_tmp
 tmp
 /log/*.log
 dump.rdb
+jobs/
