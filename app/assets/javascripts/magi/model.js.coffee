@@ -1,4 +1,4 @@
-class window.Magi.JobModel
+class window.Magi.Model
   constructor: (@attributes = {}) ->
 
   set: (attributes) ->
