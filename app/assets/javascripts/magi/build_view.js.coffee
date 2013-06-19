@@ -7,7 +7,7 @@ class window.Magi.BuildView
     $("#build#{@model.attributes.id}")
 
   render: ->
-    if element = @element()
-      element.removeClass()
-      element.addClass(@model.attributes.status)
-      element.find('.time').text(@model.attributes.finished_at)
+    @element()
+      .removeClass()
+      .addClass(@model.attributes.status)
+      .find('.time').text(@model.attributes.finished_at)
