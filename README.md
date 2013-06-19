@@ -17,10 +17,12 @@ Magi is just a rails application with some middlewares.
 * foreman: process manager
 * mysql: store jobs & builds
 * resque: background worker using redis
-* autodoc: generate [RESTful API documents](https://github.com/r7kamura/magi/blob/master/doc) from request-specs
 * jquery: ajax updated view
+* redis: build started/finished notification by pubsub system
+* autodoc: generate [RESTful API documents](https://github.com/r7kamura/magi/blob/master/doc) from request-specs
 
 ### TODO
+* authentication (with read, write)
 * build stop button
 * self-repairing system
 * plugin updater
