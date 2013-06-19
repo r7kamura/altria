@@ -21,13 +21,6 @@ class EventsController < ApplicationController
 
   private
 
-  def index_with_redis_exception
-    index_without_redis_exception
-  rescue Redis::CannotConnectError
-    head 503
-  end
-  alias_method_chain :index, :redis_exception
-
   def require_event_stream
     response.headers["Content-Type"] = "text/event-stream"
   end
