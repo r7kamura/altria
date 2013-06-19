@@ -1,10 +1,10 @@
-class window.Magi.JobView
-  constructor: () ->
-    @model = new Backbone.Model()
-    @model.on 'change', => @render()
-
-  element: ->
-    $("#job#{@model.get('job_id')}")
+window.Magi.JobView = Backbone.View.extend
+  initialize: () ->
 
   render: ->
-    @element().removeClass().addClass(@model.get('status'))
+    console.log(@el)
+    console.log(@$el)
+    @$el.removeClass().addClass(@status())
+
+  status: ->
+    @model.get('status')
