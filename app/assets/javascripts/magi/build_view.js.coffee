@@ -1,13 +1,13 @@
 class window.Magi.BuildView
   constructor: () ->
-    @model = new Magi.Model()
+    @model = new Backbone.Model()
     @model.on 'change', => @render()
 
   element: ->
-    $("#build#{@model.attributes.id}")
+    $("#build#{@model.get('id')}")
 
   render: ->
     @element()
       .removeClass()
-      .addClass(@model.attributes.status)
-      .find('.time').text(@model.attributes.finished_at)
+      .addClass(@model.get('status'))
+      .find('.time').text(@model.get('finished_at'))
