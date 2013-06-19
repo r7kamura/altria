@@ -1,9 +1,10 @@
 class window.Magi.JobView
-  constructor: (@job) ->
+  constructor: () ->
+    @model = new Magi.Model()
+    @model.onChange => @render()
 
   element: ->
-    $("#job#{@job.attributes.job_id}")
+    $("#job#{@model.attributes.job_id}")
 
   render: ->
-    @element().removeClass()
-    @element().addClass(@job.attributes.status)
+    @element().removeClass().addClass(@model.attributes.status)
