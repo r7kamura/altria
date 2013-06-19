@@ -5,5 +5,5 @@ Magi::Application.routes.draw do
     resources :builds, only: [:index, :show, :create, :update, :destroy]
   end
 
-  resources :events, only: :index
+  resources :events, only: :index if Rails.configuration.cache_classes
 end
