@@ -87,6 +87,10 @@ section.builds {
     background: #fafafa;
   }
 
+  li.unfinished a {
+    @include stripe;
+  }
+
   li.unfinished a:before {
     content: "\F056";
   }

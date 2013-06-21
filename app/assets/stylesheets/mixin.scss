@@ -4,3 +4,23 @@
   padding: .2em .6em;
   margin-bottom: .5em;
 }
+
+@mixin stripe {
+  background-size: 30px 30px;
+  background-color: #ddd;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .30) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, .30) 50%,
+    rgba(255, 255, 255, .30) 75%,
+    transparent 75%,
+    transparent
+  );
+  -webkit-animation: progress 3s linear infinite;
+}
+
+@-webkit-keyframes progress {
+  0% { background-position: 0 0; } 100% { background-position: 60px 0; }
+}
