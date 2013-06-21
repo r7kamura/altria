@@ -67,9 +67,18 @@ module Magi
     end
 
     def save
+      save_files
+      save_build
+    end
+
+    def save_files
       current_build_path.mkpath
       symlink_assets
       copy_result_html
+    end
+
+    def save_build
+      job.current_build.update_properties(coverage: last_coverage)
     end
   end
 end
@@ -82,4 +91,8 @@ Job.class_eval do
   def coverage
     @coverage ||= Magi::SimpleCov.new(self)
   end
+end
+
+Build.class_eval do
+  property(:coverage)
 end
