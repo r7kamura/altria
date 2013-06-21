@@ -18,10 +18,16 @@ section.job_settings
       p= f.label :schedule
       p= f.text_field :schedule, placeholder: "* * * * *"
 
-    - (resource.class.properties - [:description, :schedule, :script]).each do |name|
+    - resource.class.properties.each do |property|
+      - next if property.name.in?([:description, :schedule, :script])
       .field
-        p= f.label name
-        p= f.text_field name
+        p= f.label property.name
+        p
+          - case property.type
+          - when :boolean
+            = f.check_box property.name, {}, "true", "false"
+          - else
+            = f.text_field property.name
 
     .field
       p= f.submit class: "button"
