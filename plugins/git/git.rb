@@ -10,15 +10,15 @@ module Magi
 
     def clone
       validate_existence_of_git_url
-      command("git clone #{job.git_url} #{job.workspace.path}")
+      command("git clone #{job.git_url} #{path}")
     end
 
     def update
-      command("cd #{job.workspace.path} && git pull")
+      command("cd #{path} && git pull")
     end
 
     def revision
-      command("cd #{job.workspace.path} && git rev-parse HEAD").rstrip
+      command("cd #{path} && git rev-parse HEAD").rstrip
     end
 
     def updated_since_last_finished_build?
@@ -26,7 +26,7 @@ module Magi
     end
 
     def cloned?
-      job.workspace.path.join(".git").exist?
+      path.join(".git").exist?
     end
 
     private
@@ -37,6 +37,10 @@ module Magi
 
     def validate_existence_of_git_url
       raise GitUrlNotFound unless job.git_url
+    end
+
+    def path
+      job.workspace.path + "repository"
     end
 
     class GitUrlNotFound < StandardError
