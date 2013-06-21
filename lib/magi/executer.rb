@@ -27,7 +27,11 @@ module Magi
     end
 
     def result
-      @result ||= Open3.capture2e(script)
+      @result ||= Open3.capture2e(lines)
+    end
+
+    def lines
+      script.gsub("\n", ";")
     end
   end
 end
