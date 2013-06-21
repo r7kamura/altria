@@ -14,7 +14,7 @@ module Magi
     end
 
     def enabled?
-      job.enable_simplecov == "1"
+      !!job.enable_simplecov
     end
 
     def workspace_path
