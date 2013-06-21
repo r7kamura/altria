@@ -8,9 +8,29 @@ module Magi
       @job = job
     end
 
+    def before_enqueue
+      if has_repository_url?
+        clone unless cloned?
+        update
+        updated_since_last_finished_build?
+      end
+    end
+
+    def before_execute
+      if has_repository_url?
+        clone
+      end
+    end
+
+    def after_execute
+      if has_repository_url?
+        job.current_build.update_properties(revision: revision)
+      end
+    end
+
     def clone
-      validate_existence_of_git_url
-      command("git clone #{job.git_url} #{path}")
+      validate_existence_of_repository_url
+      command("git clone #{job.repository_url} #{path}")
     end
 
     def update
@@ -29,60 +49,44 @@ module Magi
       path.join(".git").exist?
     end
 
-    private
-
     def command(script)
       Open3.capture3(script)[0]
-    end
-
-    def validate_existence_of_git_url
-      raise GitUrlNotFound unless job.git_url
     end
 
     def path
       job.workspace.path + "repository"
     end
 
-    class GitUrlNotFound < StandardError
+    def has_repository_url?
+      job.repository_url.present?
+    end
+
+    private
+
+    def validate_existence_of_repository_url
+      raise RepositoryUrlNotFound unless has_repository_url?
+    end
+
+    class RepositoryUrlNotFound < StandardError
       def message
-        "You must set `git_url`"
+        "You must set `repository_url`"
       end
     end
   end
 end
 
 Job.class_eval do
-  property(:git_url)
+  property(:repository_url)
 
-  before_enqueue do
-    if git_url.present?
-      repository.clone unless repository.cloned?
-      repository.update
-      repository.updated_since_last_finished_build?
-    end
-  end
+  before_enqueue { repository.before_enqueue }
 
-  before_execute do
-    if git_url.present?
-      repository.clone unless repository.cloned?
-    end
-  end
+  before_execute { repository.before_execute }
 
-  after_execute do
-    if git_url.present?
-      current_build.update_revision
-    end
-  end
+  after_execute { repository.after_execute }
 
   def repository
     @repository ||= Magi::Repository.new(self)
   end
 end
 
-Build.class_eval do
-  property(:revision)
-
-  def update_revision
-    update_properties(revision: job.repository.revision)
-  end
-end
+Build.property(:revision)
