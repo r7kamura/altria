@@ -13,6 +13,12 @@ class Job < ActiveRecord::Base
 
   delegate :scheduled?, to: :scheduler, allow_nil: true
 
+  property(:description, type: :text)
+
+  property(:script, type: :text)
+
+  property(:schedule, placeholder: "* * * * *")
+
   class << self
     def create_with_properties(params)
       new.update_attributes_with_properties(params)
@@ -54,12 +60,6 @@ class Job < ActiveRecord::Base
       @after_executes ||= []
     end
   end
-
-  property(:description)
-
-  property(:schedule)
-
-  property(:script)
 
   def run
     script ? execute : raise_script_not_found
