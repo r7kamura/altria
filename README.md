@@ -4,7 +4,7 @@ Casual CI server system (magi is a temporal name).
 ## Usage
 ```
 $ gem install magi         # install magi.gem
-$ brew install mysql redis # install MySQL and Redis
+$ brew install mysql redis # install mysql and redis
 $ magi setup               # create mysql tables
 $ magi start               # launch server on http://localhost:3000
 ```
