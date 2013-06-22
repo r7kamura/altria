@@ -3,10 +3,18 @@ Casual CI server system (magi is a temporal name).
 
 ## Usage
 ```
-$ gem install magi         # install magi.gem
-$ brew install mysql redis # install mysql and redis
-$ magi setup               # create mysql tables
-$ magi start               # launch server on http://localhost:3000
+# Install mysql & redis
+$ brew install mysql redis
+
+# From github (recommended)
+$ git clone git@github.com:r7kamura/magi
+$ ./bin/magi setup
+$ ./bin/magi start
+
+# From gem
+$ gem install magi
+$ magi setup
+$ magi start
 ```
 
 ## Development
