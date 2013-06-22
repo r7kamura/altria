@@ -23,8 +23,10 @@ Magi is just a rails application with some middlewares.
 
 ## Plugins
 * [magi-git](https://github.com/r7kamura/magi-git): Git integration plugin
+* [magi-simple_cov](https://github.com/r7kamura/magi-simple_cov): Save simplecov coverage for each build
 
 ```ruby
 # Put your favorite plugin gems into Gemfile.local
 gem "magi-git", git: "git@github.com:r7kamura/magi-git"
+gem "magi-simple_cov", git: "git@github.com:r7kamura/magi-simple_cov"
 ```
