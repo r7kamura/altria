@@ -33,7 +33,5 @@ group :assets do
   gem "uglifier"
 end
 
-# Put Gemfile in plugins/:name/Gemfile to use arbitrary gems in your plugin.
-Pathname.glob("plugins/*/Gemfile").each do |pathname|
-  eval(pathname.read)
-end
+# Put Gemfile.local to use arbitrary gems for your use case.
+eval File.read("Gemfile.local") if File.exist?("Gemfile.local")
