@@ -1,4 +1,4 @@
-# Magi [![Code Climate](https://codeclimate.com/github/r7kamura/magi.png)](https://codeclimate.com/github/r7kamura/magi)
+# Magi [![Build Status](https://travis-ci.org/r7kamura/magi.png?branch=master)](https://travis-ci.org/r7kamura/magi) [![Code Climate](https://codeclimate.com/github/r7kamura/magi.png)](https://codeclimate.com/github/r7kamura/magi)
 Casual CI server system (magi is a temporal name).
 
 ## Usage
