@@ -19,6 +19,7 @@ end
 
 group :test do
   gem "autodoc"
+  gem "coveralls", require: false
   gem "factory_girl_rails"
   gem "response_code_matchers"
   gem "rspec-json_matcher"
