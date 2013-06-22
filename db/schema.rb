@@ -9,28 +9,28 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608153655) do
+ActiveRecord::Schema.define(version: 20130608153655) do
 
-  create_table "builds", :force => true do |t|
+  create_table "builds", force: true do |t|
     t.boolean  "status"
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "job_id"
     t.text     "output"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.text     "properties"
   end
 
-  add_index "builds", ["job_id"], :name => "index_builds_on_job_id"
+  add_index "builds", ["job_id"], name: "index_builds_on_job_id", using: :btree
 
-  create_table "jobs", :force => true do |t|
+  create_table "jobs", force: true do |t|
     t.string   "name"
     t.text     "properties"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
