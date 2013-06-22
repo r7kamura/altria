@@ -90,9 +90,7 @@ class Job < ActiveRecord::Base
   end
 
   def update_attributes_with_properties(params)
-    params.slice(:name, *self.class.property_names).each do |key, value|
-      send("#{key}=", value)
-    end
+    params.slice(:name, *self.class.property_names).each {|key, value| send("#{key}=", value) }
     tap(&:save)
   end
 
