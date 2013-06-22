@@ -39,11 +39,11 @@ module Magi
     end
 
     def setup
-      system("cd #{root_path} && rake db:create db:migrate")
+      system(env, "cd #{root_path} && bundle install && bundle exec rake db:create db:migrate")
     end
 
     def start
-      system(env, "cd #{root_path} && foreman start")
+      system(env, "cd #{root_path} && bundle exec foreman start")
     end
 
     def root_path

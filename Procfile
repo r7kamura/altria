@@ -1,4 +1,4 @@
 redis: redis-server
 rails: rails s
-worker: rake resque:work QUEUE="*"
-clock: clockwork script/clock.rb
+worker: bundle exec rake resque:work QUEUE="*"
+clock: bundle exec clockwork script/clock.rb

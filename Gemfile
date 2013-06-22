@@ -36,4 +36,6 @@ group :assets do
 end
 
 # Put Gemfile.local to use arbitrary gems for your use case.
-eval File.read("Gemfile.local") if File.exist?("Gemfile.local")
+workspace = ENV["WORKSPACE_PATH"] || "."
+path = "#{workspace}/Gemfile.local"
+eval File.read(path) if File.exist?(path)
