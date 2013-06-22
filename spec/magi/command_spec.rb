@@ -13,13 +13,17 @@ describe Magi::Command do
   end
 
   describe "#call" do
+    let(:env) do
+      { "WORKSPACE_PATH" => Dir.pwd }
+    end
+
     context "with `setup`" do
       let(:arguments) do
         ["setup"]
       end
 
       it "executes setup script" do
-        command.should_receive(:system).with("cd #{Dir.pwd} && rake db:create db:migrate")
+        command.should_receive(:system).with(env, "cd #{Dir.pwd} && bundle install && bundle exec rake db:create db:migrate")
         command.call
       end
     end
@@ -30,7 +34,7 @@ describe Magi::Command do
       end
 
       it "executes start script" do
-        command.should_receive(:system).with({ "WORKSPACE_PATH" => Dir.pwd }, "cd #{Dir.pwd} && foreman start")
+        command.should_receive(:system).with(env, "cd #{Dir.pwd} && bundle exec foreman start")
         command.call
       end
     end
