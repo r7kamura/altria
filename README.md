@@ -21,8 +21,10 @@ Magi is just a rails application with some middlewares.
 * redis: build started/finished notification by pubsub system
 * autodoc: generate [RESTful API documents](https://github.com/r7kamura/magi/blob/master/doc) from request-specs
 
-### TODO
-* authentication (with read, write)
-* build stop button
-* self-repairing system
-* plugin updater
+## Plugins
+* [magi-git](https://github.com/r7kamura/magi-git): Git integration plugin
+
+```ruby
+# Put your favorite plugin gems into Gemfile.local
+gem "magi-git", git: "git@github.com:r7kamura/magi-git"
+```
