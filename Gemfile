@@ -28,8 +28,10 @@ group :test do
 end
 
 group :assets do
-  gem "sass-rails"
   gem "coffee-rails"
+  gem "coffee-script"
+  gem "sass"
+  gem "sass-rails"
   gem "uglifier"
 end
 
