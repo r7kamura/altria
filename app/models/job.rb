@@ -98,15 +98,19 @@ class Job < ActiveRecord::Base
     @workspace ||= Magi::Workspace.new(workspace_path)
   end
 
-  private
-
   def workspace_path
     Magi.configuration.workspace_path + "jobs/#{id}"
   end
 
   def execute
     execute_before_executes
-    workspace.chdir { execute_script }.tap { execute_after_executes }
+    execute_without_before_executes.tap { execute_after_executes }
+  end
+
+  private
+
+  def execute_without_before_executes
+    workspace.chdir { execute_script }
   end
 
   def execute_script
