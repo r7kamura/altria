@@ -24,3 +24,5 @@ section.builds
           span.time= build.finished_at
 
   = paginate @resource.builds.page(params[:page])
+
+= content_for :jobs_show
