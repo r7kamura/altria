@@ -8,6 +8,7 @@ $ brew install mysql redis
 
 # From github (recommended)
 $ git clone git@github.com:r7kamura/magi
+$ cd magi
 $ ./bin/magi setup
 $ ./bin/magi start
 
