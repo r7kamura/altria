@@ -5,6 +5,7 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
+    = content_for :head
 
   body class = action_classes
     = yield
