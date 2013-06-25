@@ -13,11 +13,6 @@ $ git clone git@github.com:r7kamura/magi
 $ cd magi
 $ ./bin/magi setup
 $ ./bin/magi start
-
-# From gem
-$ gem install magi
-$ magi setup
-$ magi start
 ```
 
 ## Development
