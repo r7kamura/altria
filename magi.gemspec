@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "mysql2"
   spec.add_dependency "puma"
   spec.add_dependency "quiet_assets"
-  spec.add_dependency "rails", ">= 4.0.0.rc2"
+  spec.add_dependency "rails", ">= 4.0.0"
   spec.add_dependency "rails-backbone"
   spec.add_dependency "rake"
   spec.add_dependency "redis"
