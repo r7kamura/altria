@@ -36,6 +36,7 @@ Magi is just a rails application with some middlewares.
 
 ```ruby
 # Put your favorite plugin gems into Gemfile.local
-gem "magi-git", git: "git@github.com:r7kamura/magi-git"
-gem "magi-simple_cov", git: "git@github.com:r7kamura/magi-simple_cov"
+gem "magi-git", git: "git@github.com:r7kamura/magi-git.git"
+gem "magi-simple_cov", git: "git@github.com:r7kamura/magi-simple_cov.git"
+gem "magi-pipeline", git: "git@github.com:r7kamura/magi-pipeline.git"
 ```
