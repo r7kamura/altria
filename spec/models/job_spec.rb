@@ -66,7 +66,7 @@ describe Job do
     end
   end
 
-  describe "#enqueue" do
+  describe "#enqueue_with_before_enqueues" do
     before do
       Job.before_enqueues.clear
     end
@@ -82,7 +82,7 @@ describe Job do
 
       it "enqueues a new build" do
         Job.should_receive(:hook_is_executed)
-        job.enqueue
+        job.enqueue_with_before_enqueues
       end
     end
 
@@ -94,7 +94,7 @@ describe Job do
 
       it "stops at failed hook" do
         Job.should_not_receive(:hook_is_executed)
-        job.enqueue
+        job.enqueue_with_before_enqueues
       end
     end
   end

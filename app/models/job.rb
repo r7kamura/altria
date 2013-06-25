@@ -70,11 +70,11 @@ class Job < ActiveRecord::Base
   end
 
   def enqueue
-    enqueue_without_before_enqueues if execute_before_enqueues
+    builds.create.tap(&:enqueue).tap { execute_after_enqueues }
   end
 
-  def enqueue_without_before_enqueues
-    builds.create.tap(&:enqueue).tap { execute_after_enqueues }
+  def enqueue_with_before_enqueues
+    enqueue if execute_before_enqueues
   end
 
   def status_name
