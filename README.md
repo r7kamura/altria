@@ -1,6 +1,8 @@
 # Magi [![Build Status](https://travis-ci.org/r7kamura/magi.png?branch=master)](https://travis-ci.org/r7kamura/magi) [![Code Climate](https://codeclimate.com/github/r7kamura/magi.png)](https://codeclimate.com/github/r7kamura/magi) [![Coverage Status](https://coveralls.io/repos/r7kamura/magi/badge.png)](https://coveralls.io/r/r7kamura/magi)
 Casual CI server system (magi is a temporal name).
 
+![](http://gifzo.net/f2zmQFtkzv.gif)
+
 ## Usage
 ```
 # Install mysql & redis
