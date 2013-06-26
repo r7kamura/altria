@@ -6,6 +6,8 @@ if defined?(Bundler)
   Bundler.require(:default, Rails.env)
 end
 
+require "magi"
+
 module Magi
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
