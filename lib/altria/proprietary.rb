@@ -1,4 +1,4 @@
-module Magi
+module Altria
   module Proprietary
     extend ActiveSupport::Concern
 

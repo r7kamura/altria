@@ -32,7 +32,7 @@ RSpec.configure do |config|
   config.include ResponseCodeMatchers, type: :request
 
   config.before(:suite) do
-    Magi.configuration.workspace_path = Rails.root.join("tmp/workspace")
+    Altria.configuration.workspace_path = Rails.root.join("tmp/workspace")
   end
 
   config.after(:suite) do

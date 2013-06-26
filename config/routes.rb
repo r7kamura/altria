@@ -1,4 +1,4 @@
-Magi::Application.routes.draw do
+Altria::Application.routes.draw do
   root to: "jobs#index"
 
   resources :jobs do

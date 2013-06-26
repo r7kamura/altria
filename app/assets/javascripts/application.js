@@ -15,6 +15,6 @@
 //= require underscore
 //= require backbone
 //
-//= require magi
-//= require_tree ./magi
+//= require altria
+//= require_tree ./altria
 //= require_tree .

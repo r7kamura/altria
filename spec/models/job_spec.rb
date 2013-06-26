@@ -22,7 +22,7 @@ describe Job do
       end
 
       it "runs its job" do
-        Magi::Executer.should_receive(:execute).with("true")
+        Altria::Executer.should_receive(:execute).with("true")
         job.run
       end
     end

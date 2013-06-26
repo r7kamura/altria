@@ -1,4 +1,4 @@
-module Magi
+module Altria
   class Configuration
     attr_accessor :workspace_path
 

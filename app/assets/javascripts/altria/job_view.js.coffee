@@ -1,4 +1,4 @@
-window.Magi.JobView = Backbone.View.extend
+window.Altria.JobView = Backbone.View.extend
   initialize: () ->
 
   render: ->

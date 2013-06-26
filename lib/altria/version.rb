@@ -1,3 +1,3 @@
-module Magi
+module Altria
   VERSION = "0.1.6"
 end

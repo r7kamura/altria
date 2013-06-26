@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   respond_to :html, :json
 
-  self.responder = Magi::Responder
+  self.responder = Altria::Responder
 
   rescue_from WeakParameters::ValidationError do
     head 400

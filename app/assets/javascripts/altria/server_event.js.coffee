@@ -1,4 +1,4 @@
-class window.Magi.ServerEvent
+class window.Altria.ServerEvent
   constructor: ->
     @source = new EventSource('/events')
 

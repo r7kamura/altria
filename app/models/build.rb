@@ -1,5 +1,5 @@
 class Build < ActiveRecord::Base
-  include Magi::Proprietary
+  include Altria::Proprietary
 
   serialize :properties, Hash
 

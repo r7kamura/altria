@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Magi::Command do
+describe Altria::Command do
   let(:command) do
     described_class.new(arguments)
   end
@@ -45,7 +45,7 @@ describe Magi::Command do
       end
 
       it "shows usage" do
-        command.should_receive(:puts).with("Usage: magi {setup|start}")
+        command.should_receive(:puts).with("Usage: altria {setup|start}")
         command.call
       end
     end

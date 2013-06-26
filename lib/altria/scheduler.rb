@@ -1,4 +1,4 @@
-module Magi
+module Altria
   class Scheduler
     CRON_REGEXP = /\A(\d+|\*) (\d+|\*) (\d+|\*) (\d+|\*) (\d+|\*)\s*\z/
 

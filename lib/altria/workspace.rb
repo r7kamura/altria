@@ -1,4 +1,4 @@
-module Magi
+module Altria
   class Workspace
     attr_reader :path
 

@@ -1,17 +1,17 @@
-# Provides command line interface for Magi.
+# Provides command line interface for Altria.
 #
 # Examples
 #
 #   # Takes ARGV and invokes a job.
-#   Magi::Command.call(ARGV)
+#   Altria::Command.call(ARGV)
 #
 #   # Invokes "setup" command to set up your database.
-#   Magi::Command.call(["setup"])
+#   Altria::Command.call(["setup"])
 #
 #   # Invokes "start" command to start the processes.
-#   Magi::Command.call(["start"])
+#   Altria::Command.call(["start"])
 #
-module Magi
+module Altria
   class Command
     def self.call(*args)
       new(*args).call
@@ -28,7 +28,7 @@ module Magi
       when "start"
         start
       else
-        puts "Usage: magi {setup|start}"
+        puts "Usage: altria {setup|start}"
       end
     end
 

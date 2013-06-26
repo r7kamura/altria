@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20130608153655) do
     t.datetime "finished_at"
     t.integer  "job_id"
     t.text     "output"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "properties"
   end
 
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20130608153655) do
   create_table "jobs", force: true do |t|
     t.string   "name"
     t.text     "properties"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

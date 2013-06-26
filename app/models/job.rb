@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  include Magi::Proprietary
+  include Altria::Proprietary
 
   serialize :properties, Hash
 
@@ -66,7 +66,7 @@ class Job < ActiveRecord::Base
   end
 
   def scheduler
-    Magi::Scheduler.new(schedule) if schedule.present?
+    Altria::Scheduler.new(schedule) if schedule.present?
   end
 
   def enqueue
@@ -95,11 +95,11 @@ class Job < ActiveRecord::Base
   end
 
   def workspace
-    @workspace ||= Magi::Workspace.new(workspace_path)
+    @workspace ||= Altria::Workspace.new(workspace_path)
   end
 
   def workspace_path
-    Magi.configuration.workspace_path + "jobs/#{id}"
+    Altria.configuration.workspace_path + "jobs/#{id}"
   end
 
   def execute
@@ -114,7 +114,7 @@ class Job < ActiveRecord::Base
   end
 
   def execute_script
-    Magi::Executer.execute(script)
+    Altria::Executer.execute(script)
   end
 
   def execute_before_enqueues

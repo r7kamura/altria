@@ -1,6 +1,6 @@
 require "action_controller"
 
-module Magi
+module Altria
   class Responder < ActionController::Responder
     def initialize(controller, resources, *args)
       if resources[0].respond_to?(:page)

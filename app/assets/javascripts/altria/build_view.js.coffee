@@ -1,4 +1,4 @@
-class window.Magi.BuildView
+class window.Altria.BuildView
   constructor: () ->
     @model = new Backbone.Model()
     @model.on 'change', => @render()

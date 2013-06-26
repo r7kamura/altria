@@ -1,6 +1,6 @@
 require "open3"
 
-module Magi
+module Altria
   class Executer
     def self.execute(*args)
       new(*args).execute
