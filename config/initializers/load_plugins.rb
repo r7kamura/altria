@@ -1,1 +1,0 @@
-Magi.plugin_manager.load_plugins
