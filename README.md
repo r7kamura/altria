@@ -1,5 +1,5 @@
 # Altria [![Build Status](https://travis-ci.org/r7kamura/altria.png?branch=master)](https://travis-ci.org/r7kamura/altria) [![Code Climate](https://codeclimate.com/github/r7kamura/altria.png)](https://codeclimate.com/github/r7kamura/altria) [![Coverage Status](https://coveralls.io/repos/r7kamura/altria/badge.png)](https://coveralls.io/r/r7kamura/altria)
-Casual CI server system.
+Alternative Ruby Integration Application.
 
 ![](http://gifzo.net/f2zmQFtkzv.gif)
 
