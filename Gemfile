@@ -1,17 +1,14 @@
+require "pathname"
+
 source "https://rubygems.org"
 
-gem "clockwork", require: false
+gemspec
+
 gem "font-awesome-rails"
-gem "foreman"
 gem "jquery-rails"
 gem "kaminari"
-gem "mysql2"
-gem "puma"
 gem "quiet_assets"
-gem "rails", ">= 4.0.0"
 gem "rails-backbone"
-gem "rake"
-gem "redis"
 gem "resque"
 gem "slim"
 gem "weak_parameters"
