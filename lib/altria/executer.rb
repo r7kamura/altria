@@ -31,7 +31,7 @@ module Altria
     end
 
     def lines
-      script.gsub("\n", ";")
+      script.gsub(/\r\n|\n/, ";")
     end
   end
 end
