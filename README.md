@@ -31,10 +31,12 @@ Altria is just a rails application with some middlewares.
 * [altria-git](https://github.com/r7kamura/altria-git): Git integration plugin
 * [altria-simple_cov](https://github.com/r7kamura/altria-simple_cov): Save simplecov coverage for each build
 * [altria-pipeline](https://github.com/r7kamura/altria-pipeline): Lets your job to kick another job after finished
+* [altria-processing_time](https://github.com/r7kamura/altria-processing_time): Display each build's processing time graph on job page
 
 ```ruby
 # Put your favorite plugin gems into Gemfile.local
 gem "altria-git", git: "git@github.com:r7kamura/altria-git.git"
 gem "altria-simple_cov", git: "git@github.com:r7kamura/altria-simple_cov.git"
 gem "altria-pipeline", git: "git@github.com:r7kamura/altria-pipeline.git"
+gem "altria-processing_time", git: "git@github.com:r7kamura/altria-processing_time.git"
 ```
