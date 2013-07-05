@@ -42,9 +42,9 @@ describe "Builds" do
     end
   end
 
-  describe "GET /jobs/:job_id/builds/:id" do
+  describe "GET /builds/:id" do
     it "returns the build", :autodoc do
-      get "/jobs/#{job.id}/builds/#{build.id}", params, env
+      get "/builds/#{build.id}", params, env
       response.status.should == 200
       response.body.should be_json(Hash)
     end
@@ -59,21 +59,21 @@ describe "Builds" do
     end
   end
 
-  describe "PUT /jobs/:job_id/builds/:id" do
+  describe "PUT /builds/:id" do
     before do
       params[:status] = 1
     end
 
     it "updates the build", :autodoc do
-      put "/jobs/#{job.id}/builds/#{build.id}", params, env
+      put "/builds/#{build.id}", params, env
       response.status.should == 204
       build.reload.status.should == true
     end
   end
 
-  describe "DELETE /jobs/:job_id/builds/:id" do
+  describe "DELETE /builds/:id" do
     it "deletes the build", :autodoc do
-      delete "/jobs/#{job.id}/builds/#{build.id}", params, env
+      delete "/builds/#{build.id}", params, env
       response.status.should == 204
       Build.should have(0).build
     end

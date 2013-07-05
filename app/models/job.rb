@@ -78,7 +78,7 @@ class Job < ActiveRecord::Base
   end
 
   def status_name
-    last_finished_build.try(:status_name) || "unfinished"
+    builds.last.try(:status_name) || "unfinished"
   end
 
   def current_build

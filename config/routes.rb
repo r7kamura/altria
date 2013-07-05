@@ -1,7 +1,7 @@
 Altria::Application.routes.draw do
   root to: "jobs#index"
 
-  resources :jobs do
+  resources :jobs, shallow: true do
     resources :builds, only: [:index, :show, :create, :update, :destroy]
   end
 

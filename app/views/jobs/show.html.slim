@@ -1,28 +1,29 @@
-section.breadcrumbs
-  ul
-    li= link_to "Home", root_path
-    li.delimiter
-    li= link_to @resource.name, @resource
+- if request.xhr?
+  = render "jobs/list", job: @resource
 
-section.builds
-  h1
-    = @resource.name
+- else
+  section.breadcrumbs
+    ul
+      li= link_to "Home", root_path
+      li.delimiter
+      li= link_to @resource.name, @resource
 
-  p
-    = @resource.description || "(no description)"
+  section.builds
+    h1
+      = @resource.name
 
-  .buttons
-    = link_to "Run", [@resource, :builds], method: "POST", class: "button run"
-    = link_to "Settings", [:edit, @resource], class: "button settings"
-    = link_to "Delete", @resource, method: "DELETE", data: { confirm: "Are you sure?" }, class: "button delete"
+    p
+      = @resource.description || "(no description)"
 
-  ul
-    - @resource.builds.page(params[:page]).recent.limit(10).each do |build|
-      li class=build.status_name id="build#{build.id}"
-        = link_to [@resource, build] do
-          span.id ##{build.id}
-          span.time= build.finished_at
+    .buttons
+      = link_to "Run", [@resource, :builds], method: "POST", class: "button run"
+      = link_to "Settings", [:edit, @resource], class: "button settings"
+      = link_to "Delete", @resource, method: "DELETE", data: { confirm: "Are you sure?" }, class: "button delete"
 
-  = paginate @resource.builds.page(params[:page])
+    ul
+      - @resource.builds.page(params[:page]).recent.limit(10).each do |build|
+        = render "builds/list", build: build
 
-= content_for :jobs_show
+    = paginate @resource.builds.page(params[:page])
+
+  = content_for :jobs_show

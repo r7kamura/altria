@@ -15,7 +15,7 @@ class JobsController < ApplicationController
   end
 
   def show
-    respond_with @resource
+    respond_with @resource, layout: !request.xhr?
   end
 
   def new

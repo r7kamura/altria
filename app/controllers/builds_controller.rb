@@ -1,5 +1,5 @@
 class BuildsController < ApplicationController
-  before_filter :require_job
+  before_filter :require_job, only: [:index, :create]
   before_filter :require_resources, only: :index
   before_filter :require_resource, only: [:show, :update, :destroy]
 
@@ -12,12 +12,11 @@ class BuildsController < ApplicationController
   end
 
   def show
-    respond_with @resource
+    respond_with @resource, layout: !request.xhr?
   end
 
   def create
-    resource = @job.enqueue
-    respond_with resource, location: [@job, resource]
+    respond_with @job.enqueue
   end
 
   def update
@@ -39,10 +38,10 @@ class BuildsController < ApplicationController
   end
 
   def require_resources
-    @resources = scope
+    @resources = @job.builds
   end
 
   def require_resource
-    @resource = scope.find(params[:id])
+    @resource = Build.find(params[:id])
   end
 end

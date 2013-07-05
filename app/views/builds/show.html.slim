@@ -1,36 +1,40 @@
-section.breadcrumbs
-  ul
-    li= link_to "Home", root_path
-    li.delimiter
-    li= link_to @resource.job.name, @resource.job
-    li.delimiter
-    li= link_to "##{@resource.id}", [@resource.job, @resource]
+- if request.xhr?
+  = render "builds/list", build: @resource
 
-section.build class = @resource.status_name
-  h1
-    span ##{@resource.id}
+- else
+  section.breadcrumbs
+    ul
+      li= link_to "Home", root_path
+      li.delimiter
+      li= link_to @resource.job.name, @resource.job
+      li.delimiter
+      li= link_to "##{@resource.id}", @resource
 
-  table
-    tr
-      td started_at
-      td= ":"
-      td= @resource.started_at
+  section.build class = @resource.status_name
+    h1
+      span ##{@resource.id}
 
-    tr
-      td finished_at
-      td= ":"
-      td= @resource.finished_at
+    table
+      tr
+        td started_at
+        td= ":"
+        td= @resource.started_at
 
-    tr
-      td sec
-      td= ":"
-      td= @resource.sec
+      tr
+        td finished_at
+        td= ":"
+        td= @resource.finished_at
 
-    tr
-      td status
-      td= ":"
-      td= @resource.status_name
+      tr
+        td sec
+        td= ":"
+        td= @resource.sec
 
-  pre
-    code
-      = @resource.output
+      tr
+        td status
+        td= ":"
+        td= @resource.status_name
+
+    pre
+      code
+        = @resource.output
