@@ -6,10 +6,16 @@ $ ->
           $("#job#{attributes.job_id}").replaceWith(data)
 
   $('.jobs_controller.show_action').each ->
+    event = new Altria.ServerEvent()
+    event.on 'build.finished', (attributes) ->
+        $.ajax "/builds/#{attributes.id}", data: { type: 'list' }, success: (data) ->
+          $("#build#{attributes.id}").replaceWith(data)
+    event.on 'build.started', (attributes) ->
+        $.ajax "/builds/#{attributes.id}", data: { type: 'list' }, success: (data) ->
+          $('.builds ul').prepend(data)
+
+  $('.builds_controller.show_action').each ->
     new Altria.ServerEvent()
       .on 'build.finished', (attributes) ->
         $.ajax "/builds/#{attributes.id}", success: (data) ->
-          $("#build#{attributes.id}").replaceWith(data)
-      .on 'build.started', (attributes) ->
-        $.ajax "/builds/#{attributes.id}", success: (data) ->
-          $('.builds ul').prepend(data)
+          $('body').html(data)

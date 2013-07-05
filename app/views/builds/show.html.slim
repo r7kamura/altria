@@ -1,4 +1,4 @@
-- if request.xhr?
+- if request.xhr? && params[:type] == "list"
   = render "builds/list", build: @resource
 
 - else
