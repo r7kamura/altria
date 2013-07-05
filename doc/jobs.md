@@ -6,16 +6,16 @@ GET /jobs
 ```
 
 ### response
-```
+```ruby
 Status: 200
 response: 
 [
   {
-    "created_at" => "2013-06-11T17:48:09Z",
-            "id" => 1077,
-          "name" => "name 15",
+    "id"         => 1031,
+    "name"       => "name 17",
     "properties" => {},
-    "updated_at" => "2013-06-11T17:48:09Z"
+    "created_at" => "2013-07-05T15:55:44.000Z",
+    "updated_at" => "2013-07-05T15:55:44.000Z"
   }
 ]
 ```
@@ -25,19 +25,19 @@ response:
 Returns the job
 
 ```
-GET /jobs/1078
+GET /jobs/1032
 ```
 
 ### response
-```
+```ruby
 Status: 200
 response: 
 {
-  "created_at" => "2013-06-11T17:48:09Z",
-          "id" => 1078,
-        "name" => "name 16",
+  "id"         => 1032,
+  "name"       => "name 18",
   "properties" => {},
-  "updated_at" => "2013-06-11T17:48:09Z"
+  "created_at" => "2013-07-05T15:55:44.000Z",
+  "updated_at" => "2013-07-05T15:55:44.000Z"
 }
 ```
 
@@ -52,20 +52,18 @@ POST /jobs
 ### parameters
 * `name` string (required)
 
-
 ### response
-```
+```ruby
 Status: 201
-location: http://www.example.com/jobs/1079
 response: 
 {
-  "created_at" => "2013-06-11T17:48:09Z",
-          "id" => 1079,
-        "name" => "name",
+  "id"         => 1033,
+  "name"       => "name",
   "properties" => {
     "description" => "description"
   },
-  "updated_at" => "2013-06-11T17:48:09Z"
+  "created_at" => "2013-07-05T15:55:44.714Z",
+  "updated_at" => "2013-07-05T15:55:44.714Z"
 }
 ```
 
@@ -74,15 +72,14 @@ response:
 Updates the job
 
 ```
-PUT /jobs/1080
+PUT /jobs/1034
 ```
 
 ### parameters
 * `name` string
 
-
 ### response
-```
+```ruby
 Status: 204
 response: 
 ```

@@ -2,50 +2,50 @@
 Returns builds of the job
 
 ```
-GET /jobs/1072/builds
+GET /jobs/1025/builds
 ```
 
 ### response
-```
+```ruby
 Status: 200
 response: 
 [
   {
-     "created_at" => "2013-06-11T17:48:09Z",
+    "id"          => 1,
+    "status"      => nil,
+    "started_at"  => nil,
     "finished_at" => nil,
-             "id" => 395,
-         "job_id" => 1072,
-         "output" => nil,
-     "properties" => {},
-     "started_at" => nil,
-         "status" => nil,
-     "updated_at" => "2013-06-11T17:48:09Z"
+    "job_id"      => 1025,
+    "output"      => nil,
+    "created_at"  => "2013-07-05T15:55:44.000Z",
+    "updated_at"  => "2013-07-05T15:55:44.000Z",
+    "properties"  => {}
   }
 ]
 ```
 
 
-## GET /jobs/:job_id/builds/:id
+## GET /builds/:id
 Returns the build
 
 ```
-GET /jobs/1073/builds/396
+GET /builds/1
 ```
 
 ### response
-```
+```ruby
 Status: 200
 response: 
 {
-   "created_at" => "2013-06-11T17:48:09Z",
+  "id"          => 1,
+  "status"      => nil,
+  "started_at"  => nil,
   "finished_at" => nil,
-           "id" => 396,
-       "job_id" => 1073,
-       "output" => nil,
-   "properties" => {},
-   "started_at" => nil,
-       "status" => nil,
-   "updated_at" => "2013-06-11T17:48:09Z"
+  "job_id"      => 1027,
+  "output"      => nil,
+  "created_at"  => "2013-07-05T15:55:44.000Z",
+  "updated_at"  => "2013-07-05T15:55:44.000Z",
+  "properties"  => {}
 }
 ```
 
@@ -54,55 +54,53 @@ response:
 Creates a new build and queue it
 
 ```
-POST /jobs/1074/builds
+POST /jobs/1028/builds
 ```
 
 ### response
-```
+```ruby
 Status: 201
-location: http://www.example.com/jobs/1074/builds/397
 response: 
 {
-   "created_at" => "2013-06-11T17:48:09Z",
+  "id"          => 683,
+  "status"      => nil,
+  "started_at"  => nil,
   "finished_at" => nil,
-           "id" => 397,
-       "job_id" => 1074,
-       "output" => nil,
-   "properties" => {},
-   "started_at" => nil,
-       "status" => nil,
-   "updated_at" => "2013-06-11T17:48:09Z"
+  "job_id"      => 1028,
+  "output"      => nil,
+  "created_at"  => "2013-07-05T15:55:44.565Z",
+  "updated_at"  => "2013-07-05T15:55:44.565Z",
+  "properties"  => {}
 }
 ```
 
 
-## PUT /jobs/:job_id/builds/:id
+## PUT /builds/:id
 Updates the build
 
 ```
-PUT /jobs/1075/builds/398
+PUT /builds/1
 ```
 
 ### parameters
 * `status` integer
 
-
 ### response
-```
+```ruby
 Status: 204
 response: 
 ```
 
 
-## DELETE /jobs/:job_id/builds/:id
+## DELETE /builds/:id
 Deletes the build
 
 ```
-DELETE /jobs/1076/builds/399
+DELETE /builds/1
 ```
 
 ### response
-```
+```ruby
 Status: 204
 response: 
 ```
