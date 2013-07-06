@@ -8,11 +8,11 @@ $ ->
   $('.jobs_controller.show_action').each ->
     event = new Altria.ServerEvent()
     event.on 'build.finished', (attributes) ->
-        $.ajax "/builds/#{attributes.id}", data: { type: 'list' }, success: (data) ->
-          $("#build#{attributes.id}").replaceWith(data)
+      $.ajax "/builds/#{attributes.id}", data: { type: 'list' }, success: (data) ->
+        $("#build#{attributes.id}").replaceWith(data)
     event.on 'build.started', (attributes) ->
-        $.ajax "/builds/#{attributes.id}", data: { type: 'list' }, success: (data) ->
-          $('.builds ul').prepend(data)
+      $.ajax "/builds/#{attributes.id}", data: { type: 'list' }, success: (data) ->
+        $('.builds ul').prepend(data)
 
   $('.builds_controller.show_action').each ->
     new Altria.ServerEvent()
