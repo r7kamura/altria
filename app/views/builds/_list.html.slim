@@ -1,4 +1,4 @@
 li class=build.status_name id="build#{build.id}"
   = link_to build do
-    span.id ##{build.id}
+    span.id ##{build.incremental_id}
     span.time= build.finished_at
