@@ -5,7 +5,7 @@ class Build < ActiveRecord::Base
 
   validates :job_id, presence: true
 
-  belongs_to :job, touch: true
+  belongs_to :job, touch: true, counter_cache: true
 
   scope :recent, -> { order("created_at DESC") }
 
@@ -16,6 +16,8 @@ class Build < ActiveRecord::Base
   scope :started, -> { where("started_at IS NOT NULL") }
 
   scope :running, -> { started.unfinished }
+
+  after_create { update_incremental_id }
 
   paginates_per 10
 
@@ -68,5 +70,9 @@ class Build < ActiveRecord::Base
   def finish(result)
     reload.update_attributes!(finished_at: Time.now, output: result[:output], status: result[:status])
     notify(:finished)
+  end
+
+  def update_incremental_id
+    update_attributes(incremental_id: job.builds.count)
   end
 end

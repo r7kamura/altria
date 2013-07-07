@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130707082717) do
+ActiveRecord::Schema.define(version: 20130707083435) do
 
   create_table "builds", force: true do |t|
     t.boolean  "status"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20130707082717) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "properties"
+    t.integer  "incremental_id", default: 0
   end
 
   add_index "builds", ["job_id"], name: "index_builds_on_job_id", using: :btree
