@@ -73,6 +73,6 @@ class Build < ActiveRecord::Base
   end
 
   def update_incremental_id
-    update_attributes(incremental_id: job.builds.count)
+    update_attributes(incremental_id: job.builds_count)
   end
 end
