@@ -18,3 +18,4 @@ tmp
 /log/*.log
 dump.rdb
 jobs/
+public/assets
