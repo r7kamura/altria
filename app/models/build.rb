@@ -78,6 +78,8 @@ class Build < ActiveRecord::Base
     update_attributes(incremental_id: job.builds_count)
   end
 
+  private
+
   def one_job_cannot_have_more_than_two_builds
     if job.builds.unfinished.any?
       errors.add(:id, "One job cannot have more than two builds")
