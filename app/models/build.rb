@@ -19,6 +19,8 @@ class Build < ActiveRecord::Base
 
   after_create { update_incremental_id }
 
+  validate :one_job_cannot_have_more_than_two_builds, on: :create
+
   paginates_per 10
 
   def self.latest
@@ -74,5 +76,11 @@ class Build < ActiveRecord::Base
 
   def update_incremental_id
     update_attributes(incremental_id: job.builds_count)
+  end
+
+  def one_job_cannot_have_more_than_two_builds
+    if job.builds.unfinished.any?
+      errors.add(:id, "One job cannot have more than two builds")
+    end
   end
 end
