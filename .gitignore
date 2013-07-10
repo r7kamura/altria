@@ -17,6 +17,6 @@ test/version_tmp
 tmp
 /log/*.log
 dump.rdb
-./jobs/
+/jobs
 public/assets
 db/schema.rb
