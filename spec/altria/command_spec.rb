@@ -23,7 +23,15 @@ describe Altria::Command do
       end
 
       it "executes setup script" do
-        command.should_receive(:system).with(env, "cd #{Dir.pwd} && bundle install && bundle exec rake db:create db:migrate")
+        command.should_receive(:system).with(
+          env,
+          %W[
+            cd #{Dir.pwd} &&
+            bundle install &&
+            bundle exec rake db:create &&
+            bundle exec rake db:migrate
+          ].join(" ")
+        )
         command.call
       end
     end
