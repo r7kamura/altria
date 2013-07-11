@@ -39,7 +39,7 @@ module Altria
     end
 
     def setup
-      system(env, "cd #{root_path} && bundle install && bundle exec rake db:create db:migrate")
+      system(env, "cd #{root_path} && bundle install && bundle exec rake db:create && bundle exec rake db:migrate")
     end
 
     def start
