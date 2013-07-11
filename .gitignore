@@ -19,3 +19,4 @@ tmp
 dump.rdb
 ./jobs/
 public/assets
+db/schema.rb
