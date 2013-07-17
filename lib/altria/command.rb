@@ -39,23 +39,15 @@ module Altria
     end
 
     def setup
-      system(env, "cd #{root_path} && bundle install && bundle exec rake db:create && bundle exec rake db:migrate")
+      system("cd #{root_path} && bundle install && bundle exec rake db:create && bundle exec rake db:migrate")
     end
 
     def start
-      system(env, "cd #{root_path} && bundle exec foreman start")
+      system("cd #{root_path} && bundle exec foreman start")
     end
 
     def root_path
       File.expand_path("../../..", __FILE__)
-    end
-
-    def workspace_path
-      Dir.pwd
-    end
-
-    def env
-      { "WORKSPACE_PATH" => workspace_path }
     end
   end
 end

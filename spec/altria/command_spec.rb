@@ -13,10 +13,6 @@ describe Altria::Command do
   end
 
   describe "#call" do
-    let(:env) do
-      { "WORKSPACE_PATH" => Dir.pwd }
-    end
-
     context "with `setup`" do
       let(:arguments) do
         ["setup"]
@@ -24,7 +20,6 @@ describe Altria::Command do
 
       it "executes setup script" do
         command.should_receive(:system).with(
-          env,
           %W[
             cd #{Dir.pwd} &&
             bundle install &&
@@ -42,7 +37,7 @@ describe Altria::Command do
       end
 
       it "executes start script" do
-        command.should_receive(:system).with(env, "cd #{Dir.pwd} && bundle exec foreman start")
+        command.should_receive(:system).with("cd #{Dir.pwd} && bundle exec foreman start")
         command.call
       end
     end
