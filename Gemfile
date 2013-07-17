@@ -2,13 +2,17 @@ require "pathname"
 
 source "https://rubygems.org"
 
-gemspec
-
+gem "clockwork"
 gem "font-awesome-rails"
+gem "foreman"
 gem "jquery-rails"
 gem "kaminari"
+gem "mysql2"
+gem "puma"
 gem "quiet_assets"
-gem "rails-backbone"
+gem "rails", ">= 4.0.0"
+gem "rake"
+gem "redis"
 gem "resque"
 gem "slim"
 gem "weak_parameters"
@@ -28,11 +32,11 @@ group :test do
 end
 
 group :assets do
-  gem "coffee-rails"
+  gem "coffee-rails", ">= 4.0.0"
   gem "coffee-script"
   gem "sass"
-  gem "sass-rails"
-  gem "uglifier"
+  gem "sass-rails", ">= 4.0.0.rc1"
+  gem "uglifier", ">= 1.3.0"
 end
 
 # Put Gemfile.local to use arbitrary gems for your use case.
