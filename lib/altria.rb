@@ -1,3 +1,5 @@
+$LOAD_PATH.unshift File.expand_path("..", __FILE__)
+
 require "altria/command"
 require "altria/configuration"
 require "altria/responder"
