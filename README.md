@@ -5,10 +5,7 @@ Altria is a casual CI server, implemented with Ruby on Rails.
 
 ## Usage
 ```
-# Install mysql & redis
 $ brew install mysql redis
-
-# From github (recommended)
 $ git clone git@github.com:r7kamura/altria
 $ cd altria
 $ ./bin/altria setup
