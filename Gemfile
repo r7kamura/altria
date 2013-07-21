@@ -32,11 +32,9 @@ group :test do
 end
 
 group :assets do
-  gem "coffee-rails", ">= 4.0.0"
-  gem "coffee-script"
-  gem "sass"
-  gem "sass-rails", ">= 4.0.0.rc1"
-  gem "uglifier", ">= 1.3.0"
+  gem "coffee-rails"
+  gem "sass-rails"
+  gem "uglifier"
 end
 
 # Put Gemfile.local to use arbitrary gems for your use case.
