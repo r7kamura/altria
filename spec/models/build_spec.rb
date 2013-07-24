@@ -16,6 +16,7 @@ describe Build do
         build.started_at.should be_present
         build.finished_at.should be_present
         build.status.should == true
+        build.incremental_id.should_not be_nil
       end
     end
 
@@ -29,6 +30,7 @@ describe Build do
         build.started_at.should be_present
         build.finished_at.should be_present
         build.status.should == false
+        build.incremental_id.should_not be_nil
       end
     end
   end
