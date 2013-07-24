@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-  before_filter :require_resources, only: :index
-  before_filter :require_resource, only: [:show, :edit, :update, :destroy]
+  before_action :require_resources, only: :index
+  before_action :require_resource, only: [:show, :edit, :update, :destroy]
 
   validates :create do
     string :name, required: true

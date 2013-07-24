@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   #
   # Examples
   #
-  #   JobsController.before_filter do
+  #   JobsController.before_action do
   #     view_context.content_for :jobs_show, "This is a footer."
   #   end
   #
