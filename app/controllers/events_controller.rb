@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include ActionController::Live
 
-  before_filter :require_event_stream
+  before_action :require_event_stream
 
   def index
     redis = Redis.new
