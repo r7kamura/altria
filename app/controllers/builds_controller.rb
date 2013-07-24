@@ -1,7 +1,7 @@
 class BuildsController < ApplicationController
-  before_filter :require_job, only: [:index, :create]
-  before_filter :require_resources, only: :index
-  before_filter :require_resource, only: [:show, :update, :destroy]
+  before_action :require_job, only: [:index, :create]
+  before_action :require_resources, only: :index
+  before_action :require_resource, only: [:show, :update, :destroy]
 
   validates :update do
     integer :status
