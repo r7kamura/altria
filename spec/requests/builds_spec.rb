@@ -55,7 +55,7 @@ describe "Builds" do
       post "/jobs/#{job.id}/builds", params, env
       response.status.should == 201
       response.body.should be_json(Hash)
-      job.builds.should have(1).builds
+      job.builds.count.should == 1
     end
   end
 
