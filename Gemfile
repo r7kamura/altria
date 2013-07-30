@@ -15,6 +15,7 @@ gem "rake"
 gem "redis"
 gem "resque"
 gem "slim"
+gem "therubyracer"
 gem "weak_parameters"
 
 group :development, :test do
