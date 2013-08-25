@@ -114,7 +114,9 @@ class Job < ActiveRecord::Base
   end
 
   def execute_script
-    Altria::Executer.execute(script)
+    result = Altria::Executer.execute(script)
+    current_build.update_attributes!(output: result[:output], status: result[:status])
+    result
   end
 
   def execute_before_enqueues
