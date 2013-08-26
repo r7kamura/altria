@@ -115,6 +115,7 @@ class Job < ActiveRecord::Base
 
   def execute_script
     result = Altria::Executer.execute(script)
+    return unless result
     current_build.update_attributes!(output: result[:output], status: result[:status])
     result
   end
