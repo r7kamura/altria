@@ -14,7 +14,7 @@ describe "Builds" do
   end
 
   let(:build) do
-    FactoryGirl.create(:build, job: job)
+    FactoryGirl.create(:build, job: job, finished_at: Time.now)
   end
 
   describe "GET /jobs/:job_id/builds" do
@@ -31,7 +31,7 @@ describe "Builds" do
     context "with page" do
       before do
         params[:page] = 2
-        10.times { FactoryGirl.create(:build, job: job) }
+        10.times { FactoryGirl.create(:build, job: job, finished_at: Time.now) }
       end
 
       it "paginates builds" do
