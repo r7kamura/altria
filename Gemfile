@@ -15,7 +15,6 @@ gem "rake"
 gem "redis"
 gem "resque"
 gem "slim"
-gem "therubyracer"
 gem "weak_parameters"
 
 group :development, :test do
@@ -36,6 +35,10 @@ group :assets do
   gem "coffee-rails"
   gem "sass-rails"
   gem "uglifier"
+end
+
+group :production do
+  gem "therubyracer"
 end
 
 # Put Gemfile.local to use arbitrary gems for your use case.
