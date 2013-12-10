@@ -1,19 +1,8 @@
 # Altria [![Build Status](https://travis-ci.org/r7kamura/altria.png?branch=master)](https://travis-ci.org/r7kamura/altria) [![Code Climate](https://codeclimate.com/github/r7kamura/altria.png)](https://codeclimate.com/github/r7kamura/altria) [![Coverage Status](https://coveralls.io/repos/r7kamura/altria/badge.png)](https://coveralls.io/r/r7kamura/altria)
-Altria is a casual CI server, implemented with Ruby on Rails.
 
 ![](http://gifzo.net/f2zmQFtkzv.gif)
 
-## Usage
-```
-$ brew install mysql redis
-$ git clone git@github.com:r7kamura/altria
-$ cd altria
-$ ./bin/altria setup
-$ ./bin/altria start
-```
-
-## Development
-Altria is just a rails application with some middlewares.
+Altria is a casual CI server, implemented with Ruby on Rails and some middlewares.
 
 * rails4: notify build start/finish events via live streaming
 * clockwork: cron scheduler
@@ -22,7 +11,26 @@ Altria is just a rails application with some middlewares.
 * resque: background worker using redis
 * jquery: ajax updated view
 * redis: build started/finished notification by pubsub system
-* autodoc: generate [RESTful API documents](https://github.com/r7kamura/altria/blob/master/doc) from request-specs
+* autodoc: generate API documents from request-specs
+
+## Usage
+```sh
+# setup
+git clone git@github.com:r7kamura/altria.git
+cd altria
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:migrate RAILS_ENV=test
+
+# testing
+bundle exec rspec
+
+# documentation
+bundle exec rspec AUTODOC=1
+
+# start-up services
+bundle exec foreman start
+```
 
 ## Plugins
 * [altria-authentication](https://github.com/r7kamura/altria-authentication): Provides authentication system
