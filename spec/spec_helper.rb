@@ -13,10 +13,10 @@ require "rspec/rails"
 require "rspec/autorun"
 
 RSpec.configure do |config|
+  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.filter_run :focus
   config.infer_base_class_for_anonymous_controllers = false
   config.run_all_when_everything_filtered = true
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.use_transactional_fixtures = true
 
   config.include RSpec::JsonMatcher, type: :request
@@ -37,3 +37,6 @@ RSpec.configure do |config|
 end
 
 Resque.inline = true
+
+Autodoc.configuration.path = "doc/api"
+Autodoc.configuration.toc = true

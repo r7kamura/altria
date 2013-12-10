@@ -22,7 +22,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "autodoc"
+  gem "autodoc", "0.2.7"
   gem "coveralls", require: false
   gem "factory_girl_rails"
   gem "response_code_matchers"
